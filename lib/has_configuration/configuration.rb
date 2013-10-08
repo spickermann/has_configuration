@@ -5,8 +5,8 @@ module HasConfiguration
   class Configuration
 
     def initialize(klass, options = {})
-      @klass   = klass
-      @options = options
+      @class_name = klass.class.name.downcase
+      @options    = options
 
       load_file
       init_hash
@@ -46,8 +46,8 @@ module HasConfiguration
     def filename
       case
       when @options[:file]  then @options[:file]
-      when defined?(Rails)  then Rails.root.join('config', "#{@klass.name.downcase}.yml").to_s
-      else                       "#{@klass.name.downcase}.yml"
+      when defined?(Rails)  then Rails.root.join('config', "#{@class_name}.yml").to_s
+      else                       "#{@class_name}.yml"
       end
     end
 

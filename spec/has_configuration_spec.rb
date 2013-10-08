@@ -6,11 +6,9 @@ describe HasConfiguration do
 
     before(:all) do
       Dummy = Class.new do
-        has_configuration
+        has_configuration :file => 'spec/fixtures/class.yml'
       end
     end
-
-    before { mock_file('spec/fixtures/class.yml') }
 
     context "the class" do
       subject { Dummy }

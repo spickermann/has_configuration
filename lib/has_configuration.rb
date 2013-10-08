@@ -5,23 +5,34 @@ module HasConfiguration
   end
 
   module ClassMethods
+
     def has_configuration(options = {})
+      @configuration = Configuration.new(self, options)
+      include Getter
+    end
 
-      class_eval <<-END_OF_RUBY, __FILE__, __LINE__ + 1
+    module Getter
 
-        def self.configuration
-          @configuration ||= Configuration.new(self, #{options.inspect})
-        end
+      def self.included(base)
+        base.extend(ClassMethods)
+      end
 
+      module ClassMethods
         def configuration
-          self.class.configuration
+          @configuration
         end
+      end
 
-      END_OF_RUBY
+      def configuration
+        self.class.configuration
+      end
 
     end
+
   end
 
 end
 
-Object.class_eval { include HasConfiguration }
+class Object
+  include HasConfiguration
+end
