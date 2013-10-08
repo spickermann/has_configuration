@@ -5,14 +5,14 @@ require 'version'
 
 Gem::Specification.new do |spec|
 
-  spec.authors      = 'Martin Spickermann'
-  spec.email        = 'spickermann@gmail.com'
+  spec.authors      = ['Martin Spickermann']
+  spec.email        = ['spickermann@gmail.com']
   spec.homepage     = 'https://github.com/spickermann/has_configuation'
 
   spec.name         = 'has_configuration'
   spec.version      = HasConfiguration::VERSION::STRING
   spec.summary      = 'Simple configuration handling'
-  spec.description  = 'Loads configuration setting from a yml file and adds a configuation method to a class'
+  spec.description  = 'Loads configuration setting from a yml file and adds a configuation method to class and instances'
   spec.license      = 'MIT'
 
   spec.files        = Dir['CHANGELOG', 'MIT-LICENSE', 'README', 'lib/**/*', 'spec/**/*']
