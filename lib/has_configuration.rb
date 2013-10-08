@@ -10,7 +10,7 @@ module HasConfiguration
       class_eval <<-END_OF_RUBY, __FILE__, __LINE__ + 1
 
         def self.configuration
-          @configuration ||= Configuration.new(self, #{options})
+          @configuration ||= Configuration.new(self, #{options.inspect})
         end
 
         def configuration
