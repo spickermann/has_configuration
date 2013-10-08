@@ -5,15 +5,4 @@ rvm:
   - 1.9.3
   - 2.0.0
 gemfile:
-  - gemfiles/Gemfile.ruby-1.8.x
-  - gemfiles/Gemfile.ruby-1.9.x
-matrix:
-  include:
-    - rvm: 1.8.7
-      gemfile: gemfiles/Gemfile.ruby-1.8.x
-    - rvm: ree
-      gemfile: gemfiles/Gemfile.ruby-1.8.x
-    - rvm: 1.9.3
-      gemfile: gemfiles/Gemfile.ruby-1.9.x
-    - rvm: 2.0.0
-      gemfile: gemfiles/Gemfile.ruby-1.9.x
+  - gemfiles/Gemfile.ci
