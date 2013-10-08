@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
 
   spec.authors      = ['Martin Spickermann']
   spec.email        = ['spickermann@gmail.com']
-  spec.homepage     = 'https://github.com/spickermann/has_configuation'
+  spec.homepage     = 'https://github.com/spickermann/has_configuration'
 
   spec.name         = 'has_configuration'
   spec.version      = HasConfiguration::VERSION::STRING
