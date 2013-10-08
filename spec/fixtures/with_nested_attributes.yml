@@ -1,0 +1,5 @@
+development:
+  development: development
+  nested:
+    foo: bar
+    baz: true

@@ -1,0 +1,6 @@
+defaults: &defaults
+  default: default
+
+development:
+  <<: *defaults
+  development: development
