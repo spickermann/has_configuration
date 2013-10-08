@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    has_configuration (0.1.0)
+    has_configuration (0.2.0)
       activesupport (>= 2.3.5)
 
 GEM
