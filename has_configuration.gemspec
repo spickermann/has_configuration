@@ -19,11 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.require_path = ['lib']
 
-  if RUBY_VERSION < '1.9'
-    spec.add_dependency('activesupport', '< 4.0.0')
-  else
-    spec.add_dependency('activesupport', '>= 2.3.5')
-  end
+  spec.add_dependency('activesupport', '>= 2.3.5')
 
   spec.add_development_dependency('rake')
   spec.add_development_dependency('rspec')
