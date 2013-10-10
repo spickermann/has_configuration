@@ -103,8 +103,13 @@ describe HasConfiguration::Configuration do
     let(:configuration) { HasConfiguration::Configuration.new(klass) }
 
     it "is structified" do
-      expect(configuration.development).to eql('development')
-      expect(configuration.nested.foo ).to eql('bar')
+      expect(configuration.to_h[:development]   ).to eql('development')
+      expect(configuration[:development]        ).to eql('development')
+      expect(configuration.development          ).to eql('development')
+
+      expect(configuration.to_h[:nested]['foo'] ).to eql('bar')
+      expect(configuration[:nested]['foo']      ).to eql('bar')
+      expect(configuration.nested.foo           ).to eql('bar')
     end
 
   end
