@@ -31,14 +31,14 @@ has_configuration :file => Rails.root.join('config', 'example.yml'), :env => 'st
 **options**
 
 <dl>
-<dt><code>file</code></dt>
+<dt>file</dt>
 <dd>
   The yml file to load: Defaults to <code>config/classname.yml</code> if Rails is
   defined, <code>classname.yml</code> otherwise.
 </dd>
 <dt>env</dt>
 <dd>
-  The environment to load from the file. Defaults to +Rails.env+ if Rails is defined, no default if not.
+  The environment to load from the file. Defaults to `Rails.env` if Rails is defined, no default if not.
 </dd>
 
 YAML File Example
@@ -69,19 +69,17 @@ Foo.configuration       # => <HasConfiguration::Configuration:0x007fdb23043138>
 foo.new.configuration   # => <HasConfiguration::Configuration:0x007fdb23043138>
 
 # convenient getter methods
-Foo.configuration.some.nested           # => "value"
-
-# acts like a hash with_infffent_access
-Foo.configuration[:some][:nested]       # => "value"
-Foo.configuration[:some]['nested']      # => "value"
+Foo.configuration.some.nested             # => "value"
 
 # to_h returns a HashWithIndifferentAccess
-Foo.configuration.to_h                  # => { :user => "root", :password => "prod-secret"
-                                        #      :some => { :nested => "value" } }
+Foo.configuration.to_h                    # => { :user => "root", :password => "prod-secret"
+                                          #      :some => { :nested => "value" } }
+Foo.configuration.to_h[:some][:nested]    # => "value"
+Foo.configuration.to_h[:some]['nested']   # => "value"
 
 # force a special key type (when merging with other hashes)
-Foo.configuration.to_h(:symbolized)     # => { :user => "root", :password => "prod-secret"
-                                        #      :some => { :nested => "value" } }
-Foo.configuration.to_h(:stringify)      # => { 'user' => "root", 'password' => "prod-secret"
-                                        #      'some' => { 'nested' => "value" } }
+Foo.configuration.to_h(:symbolized)       # => { :user => "root", :password => "prod-secret"
+                                          #      :some => { :nested => "value" } }
+Foo.configuration.to_h(:stringify)        # => { 'user' => "root", 'password' => "prod-secret"
+                                          #      'some' => { 'nested' => "value" } }
 ```
