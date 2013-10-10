@@ -14,7 +14,7 @@ Installation
 Include the gem in your Gemfile:
 
 ```ruby
-gem "has_configuration", "~> 0.2.0"
+gem "has_configuration"
 ```
 
 Usage
