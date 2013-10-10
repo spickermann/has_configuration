@@ -1,7 +1,7 @@
 require 'active_support/core_ext/hash/indifferent_access'
 require 'ostruct'
 
-module HasConfiguration
+module HasConfiguration #:nodoc:all
   class Configuration
 
     def initialize(klass, options = {})
