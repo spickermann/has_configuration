@@ -104,11 +104,9 @@ describe HasConfiguration::Configuration do
 
     it "is structified" do
       expect(configuration.to_h[:development]   ).to eql('development')
-      expect(configuration[:development]        ).to eql('development')
       expect(configuration.development          ).to eql('development')
 
       expect(configuration.to_h[:nested]['foo'] ).to eql('bar')
-      expect(configuration[:nested]['foo']      ).to eql('bar')
       expect(configuration.nested.foo           ).to eql('bar')
     end
 
