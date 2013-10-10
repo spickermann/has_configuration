@@ -65,8 +65,8 @@ Configuration Retrieval
 If the example above was loaded into a class `Foo` in `production` environment:
 
 ```ruby
-Foo.configuration       # => <HasConfiguration::Configuration:0x007fdb23043138>
-foo.new.configuration   # => <HasConfiguration::Configuration:0x007fdb23043138>
+Foo.configuration       # => <HasConfiguration::Configuration:0x00...>
+foo.new.configuration   # => <HasConfiguration::Configuration:0x00...>
 
 # convenient getter methods
 Foo.configuration.some.nested             # => "value"
