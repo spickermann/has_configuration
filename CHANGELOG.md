@@ -1,3 +1,7 @@
+*0.2.2 (December 19, 2013)*
+
+* various minor fixes
+
 *0.2.1 (October 10, 2013)*
 
 * Adds documentation
