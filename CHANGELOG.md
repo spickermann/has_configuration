@@ -1,13 +1,13 @@
 *0.2.2 (December 19, 2013)*
 
-* various minor fixes
+* Fixes various edge cases
 
-*0.2.1 (October 10, 2013)*
+*0.2.1 (October 10, 2013) YANKED*
 
 * Adds documentation
 * Improves specs
 
-*0.2.0 (October 08, 2013)*
+*0.2.0 (October 08, 2013) YANKED*
 
 * Fixes Ruby 1.8 compatibility
 
