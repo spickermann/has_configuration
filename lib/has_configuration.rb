@@ -1,3 +1,5 @@
+require 'has_configuration/configuration'
+
 module HasConfiguration #:nodoc:
 
   def self.included(base)
