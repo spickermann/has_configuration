@@ -5,7 +5,7 @@ module HasConfiguration #:nodoc:all
   class Configuration
 
     def initialize(klass, options = {})
-      @class_name = klass.class.name.downcase
+      @class_name = klass.name
       @options    = options
 
       load_file
@@ -44,17 +44,20 @@ module HasConfiguration #:nodoc:all
     end
 
     def filename
-      case
-      when @options[:file]  then @options[:file]
-      when defined?(Rails)  then Rails.root.join('config', "#{@class_name}.yml").to_s
-      else                       "#{@class_name}.yml"
+      if @options[:file]
+        @options[:file]
+      elsif @class_name
+        filename = "#{@class_name.downcase}.yml"
+        defined?(Rails) ? Rails.root.join('config', filename).to_s : filename
+      else
+        raise ArgumentError, "Unable to resolve filename, please add :file parameter to has_configuration"
       end
     end
 
     def environment
       case
-      when @options[:env]   then @options[:env]
-      when defined?(Rails)  then Rails.env.to_s
+      when @options.keys.include?(:env)   then @options[:env]
+      when defined?(Rails)                then Rails.env.to_s
       end
     end
 
@@ -62,7 +65,7 @@ module HasConfiguration #:nodoc:all
       result = {}
       hash.each do |key, value|
         result[key] = value.is_a?(Hash) ? deep_structify(value) : value
-      end
+      end if hash
       OpenStruct.new(result)
     end
 
@@ -79,7 +82,7 @@ module HasConfiguration #:nodoc:all
       result = {}
       hash.each do |key, value|
         result[yield(key)] = value.is_a?(Hash) ? deep_transform_keys(value, &block) : value
-      end
+      end if hash
       result
     end
 
