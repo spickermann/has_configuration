@@ -1,3 +1,8 @@
+*current master*
+
+* Adds coveralls
+* Support for Ruby 2.1.0
+
 *0.2.2 (December 19, 2013)*
 
 * Fixes various edge cases
