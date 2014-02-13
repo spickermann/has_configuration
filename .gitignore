@@ -2,3 +2,6 @@ Gemfile.lock
 
 # ignore gem builds
 *.gem
+
+# ignore coverage results
+/coverage

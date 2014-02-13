@@ -3,6 +3,9 @@ require 'yaml'
 require 'has_configuration'
 require 'has_configuration/configuration'
 
+require 'coveralls'
+Coveralls.wear!
+
 RSpec.configure do |config|
   config.mock_with :rspec
 
