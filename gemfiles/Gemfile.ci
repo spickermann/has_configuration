@@ -1,13 +1,23 @@
 source 'https://rubygems.org'
 
 if RUBY_VERSION < "1.9"
+
   gem 'activesupport', '< 4.0.0'
+
+  group :test do
+    gem 'rspec'
+    gem 'rake'
+  end
+
 else
+
   gem 'activesupport', '>= 2.3.5'
+
+  group :test do
+    gem 'rspec'
+    gem 'rake'
+    gem 'coveralls', require: false
+  end
+
 end
 
-group :test do
-  gem 'rspec'
-  gem 'rake'
-  gem 'coveralls', require: false
-end

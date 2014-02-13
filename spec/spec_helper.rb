@@ -3,8 +3,10 @@ require 'yaml'
 require 'has_configuration'
 require 'has_configuration/configuration'
 
-require 'coveralls'
-Coveralls.wear!
+if RUBY_VERSION >= "1.9"
+  require 'coveralls'
+  Coveralls.wear!
+end
 
 RSpec.configure do |config|
   config.mock_with :rspec
