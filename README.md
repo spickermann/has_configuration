@@ -3,11 +3,11 @@ Has Configuration
 
 Load configuration settings from a yaml file and adds a class and an instance method `configuration` to an object.
 
-[![Gem Version](https://badge.fury.io/rb/has_configuration.png)](http://badge.fury.io/rb/has_configuration)
-[![Build Status](https://travis-ci.org/spickermann/has_configuration.png)](https://travis-ci.org/spickermann/has_configuration)
+[![Gem Version](https://badge.fury.io/rb/has_configuration.svg)](http://badge.fury.io/rb/has_configuration)
+[![Build Status](https://travis-ci.org/spickermann/has_configuration.svg)](https://travis-ci.org/spickermann/has_configuration)
 [![Coverage Status](https://coveralls.io/repos/spickermann/has_configuration/badge.png)](https://coveralls.io/r/spickermann/has_configuration)
 [![Code Climate](https://codeclimate.com/github/spickermann/has_configuration.png)](https://codeclimate.com/github/spickermann/has_configuration)
-[![Dependency Status](https://gemnasium.com/spickermann/has_configuration.png)](https://gemnasium.com/spickermann/has_configuration)
+[![Dependency Status](https://gemnasium.com/spickermann/has_configuration.svg)](https://gemnasium.com/spickermann/has_configuration)
 
 Installation
 ------------
