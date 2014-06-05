@@ -33,44 +33,50 @@ describe HasConfiguration::Configuration do
   end
 
   context "when initialized" do
+    let(:environment) { nil }
 
     context "environment" do
 
       before { mock_file('spec/fixtures/class.yml') }
 
       context "without env option" do
+        subject(:hash) { HasConfiguration::Configuration.new(klass).to_h }
 
-        subject { HasConfiguration::Configuration.new(klass) }
-        its(:to_h) { should eq('env' => 'development') }
-
+        it 'return the expected hash' do
+          expect(hash).to eq('env' => 'development')
+        end
       end
 
       context "with env option" do
+        subject(:hash) { HasConfiguration::Configuration.new(klass, :env => environment).to_h }
 
         let(:environment) { 'production' }
-        subject { HasConfiguration::Configuration.new(klass, :env => environment) }
-        its(:to_h) { should eq('env' => environment) }
 
+        it 'return the expected hash' do
+          expect(hash).to eq('env' => environment)
+        end
       end
 
     end
 
     context "yaml defaults" do
+      subject(:hash) { HasConfiguration::Configuration.new(klass).to_h }
 
       before { mock_file('spec/fixtures/with_defaults.yml') }
 
-      subject { HasConfiguration::Configuration.new(klass) }
-      its(:to_h) { should eq('default' => 'default', 'development' => 'development') }
-
+      it 'return the expected hash' do
+        expect(hash).to eq('default' => 'default', 'development' => 'development')
+      end
     end
 
     context "with erb" do
+      subject(:hash) { HasConfiguration::Configuration.new(klass).to_h }
 
       before { mock_file('spec/fixtures/with_erb.yml') }
 
-      subject { HasConfiguration::Configuration.new(klass) }
-      its(:to_h) { should eq('erb' => Rails.env) }
-
+      it 'return the expected hash' do
+        expect(hash).to eq('erb' => Rails.env)
+      end
     end
 
   end

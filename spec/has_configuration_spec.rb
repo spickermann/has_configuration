@@ -11,15 +11,19 @@ describe HasConfiguration do
     end
 
     context "the class" do
-      subject { Dummy }
+      subject(:dummy) { Dummy }
       it { should respond_to(:configuration) }
-      its(:configuration) { should be }
+      it 'returns a configuration' do
+        expect(dummy.configuration).to be
+      end
     end
 
     context "an instance" do
-      subject { Dummy.new }
+      subject(:dummy) { Dummy.new }
       it { should respond_to(:configuration) }
-      its(:configuration) { should be }
+      it 'returns a configuration' do
+        expect(dummy.configuration).to be
+      end
     end
 
   end
