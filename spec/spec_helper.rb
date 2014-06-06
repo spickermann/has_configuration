@@ -9,21 +9,13 @@ if RUBY_VERSION >= "1.9"
 end
 
 RSpec.configure do |config|
-  config.mock_with :rspec
-
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
+  config.mock_with :rspec do |mocks|
+    mocks.verify_partial_doubles = true
   end
 end
 
 # Mocks Rails Environment
 Rails = Class.new do
-
-  def self.root
-    Pathname.new("/RAILS_ROOT")
-  end
-
-  def self.env
-    'development'
-  end
+  def self.root; Pathname.new("/RAILS_ROOT"); end
+  def self.env ; 'test'                     ; end
 end
