@@ -12,7 +12,9 @@ describe HasConfiguration do
 
     context "the class" do
       subject(:dummy) { Dummy }
+
       it { should respond_to(:configuration) }
+
       it 'returns a configuration' do
         expect(dummy.configuration).to be
       end
@@ -20,7 +22,9 @@ describe HasConfiguration do
 
     context "an instance" do
       subject(:dummy) { Dummy.new }
+
       it { should respond_to(:configuration) }
+
       it 'returns a configuration' do
         expect(dummy.configuration).to be
       end

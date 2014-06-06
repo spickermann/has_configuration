@@ -1,43 +1,41 @@
 require 'spec_helper'
 
 describe HasConfiguration::Configuration do
-
   let(:klass) { Class }
 
-  describe ".new" do
+  before do
+    allow_any_instance_of(
+      Configuration
+    ).to receive(:raw_file).and_return(File.read(fixture))
+  end
 
-    before { mock_file('spec/fixtures/class.yml') }
+  describe ".new" do
+    let(:fixture) { 'spec/fixtures/class.yml' }
 
     context "when no filename provided" do
-
       let(:file) { "/RAILS_ROOT/config/class.yml" }
 
       it "loads default file" do
         expect_any_instance_of(Configuration).to receive(:raw_file).with(file)
         HasConfiguration::Configuration.new(klass)
       end
-
     end
 
     context "when filename provided" do
-
       let(:file) { "foo/bar.yml" }
 
       it "loads provided file" do
         expect_any_instance_of(Configuration).to receive(:raw_file).with(file)
         HasConfiguration::Configuration.new(klass, :file => file)
       end
-
     end
-
   end
 
   context "when initialized" do
     let(:environment) { nil }
 
     context "environment" do
-
-      before { mock_file('spec/fixtures/class.yml') }
+      let(:fixture) { 'spec/fixtures/class.yml' }
 
       context "without env option" do
         subject(:hash) { HasConfiguration::Configuration.new(klass).to_h }
@@ -48,9 +46,9 @@ describe HasConfiguration::Configuration do
       end
 
       context "with env option" do
-        subject(:hash) { HasConfiguration::Configuration.new(klass, :env => environment).to_h }
-
         let(:environment) { 'production' }
+
+        subject(:hash) { HasConfiguration::Configuration.new(klass, :env => environment).to_h }
 
         it 'return the expected hash' do
           expect(hash).to eq('env' => environment)
@@ -60,9 +58,9 @@ describe HasConfiguration::Configuration do
     end
 
     context "yaml defaults" do
-      subject(:hash) { HasConfiguration::Configuration.new(klass).to_h }
+      let(:fixture) { 'spec/fixtures/with_defaults.yml' }
 
-      before { mock_file('spec/fixtures/with_defaults.yml') }
+      subject(:hash) { HasConfiguration::Configuration.new(klass).to_h }
 
       it 'return the expected hash' do
         expect(hash).to eq('default' => 'default', 'development' => 'development')
@@ -70,9 +68,9 @@ describe HasConfiguration::Configuration do
     end
 
     context "with erb" do
-      subject(:hash) { HasConfiguration::Configuration.new(klass).to_h }
+      let(:fixture) { 'spec/fixtures/with_erb.yml' }
 
-      before { mock_file('spec/fixtures/with_erb.yml') }
+      subject(:hash) { HasConfiguration::Configuration.new(klass).to_h }
 
       it 'return the expected hash' do
         expect(hash).to eq('erb' => Rails.env)
@@ -82,8 +80,7 @@ describe HasConfiguration::Configuration do
   end
 
   describe "#to_h" do
-
-    before { mock_file('spec/fixtures/with_nested_attributes.yml') }
+    let(:fixture) { 'spec/fixtures/with_nested_attributes.yml' }
 
     context "#to_h" do
       subject { HasConfiguration::Configuration.new(klass).to_h }
@@ -103,10 +100,8 @@ describe HasConfiguration::Configuration do
   end
 
   describe "struct methods" do
-
-    before { mock_file('spec/fixtures/with_nested_attributes.yml') }
-
     let(:configuration) { HasConfiguration::Configuration.new(klass) }
+    let(:fixture) { 'spec/fixtures/with_nested_attributes.yml' }
 
     it "is structified" do
       expect(configuration.to_h[:development]   ).to eql('development')
@@ -115,7 +110,5 @@ describe HasConfiguration::Configuration do
       expect(configuration.to_h[:nested]['foo'] ).to eql('bar')
       expect(configuration.nested.foo           ).to eql('bar')
     end
-
   end
-
 end

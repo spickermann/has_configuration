@@ -16,10 +16,6 @@ RSpec.configure do |config|
   end
 end
 
-def mock_file(filename)
-  Configuration.any_instance.stub(:raw_file).and_return(File.read(filename))
-end
-
 # Mocks Rails Environment
 Rails = Class.new do
 
@@ -30,5 +26,4 @@ Rails = Class.new do
   def self.env
     'development'
   end
-
 end
