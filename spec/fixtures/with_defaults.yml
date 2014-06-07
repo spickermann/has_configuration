@@ -1,6 +1,6 @@
 defaults: &defaults
   default: default
 
-development:
+test:
   <<: *defaults
-  development: development
+  env: test

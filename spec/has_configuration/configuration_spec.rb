@@ -41,7 +41,7 @@ describe HasConfiguration::Configuration do
         subject(:hash) { HasConfiguration::Configuration.new(klass).to_h }
 
         it 'return the expected hash' do
-          expect(hash).to eq('env' => 'development')
+          expect(hash).to eq('env' => 'test')
         end
       end
 
@@ -63,7 +63,7 @@ describe HasConfiguration::Configuration do
       subject(:hash) { HasConfiguration::Configuration.new(klass).to_h }
 
       it 'return the expected hash' do
-        expect(hash).to eq('default' => 'default', 'development' => 'development')
+        expect(hash).to eq('default' => 'default', 'env' => 'test')
       end
     end
 
@@ -89,12 +89,12 @@ describe HasConfiguration::Configuration do
 
     context "#to_h(:stringify)" do
       subject { HasConfiguration::Configuration.new(klass).to_h(:stringify) }
-      it { should eq('development' => 'development', 'nested' => { 'foo' => 'bar', 'baz' => true }) }
+      it { should eq('env' => 'test', 'nested' => { 'foo' => 'bar', 'baz' => true }) }
     end
 
     context "#to_h(:symbolized)" do
       subject { HasConfiguration::Configuration.new(klass).to_h(:symbolized) }
-      it { should eq(:development => 'development', :nested => { :foo => 'bar', :baz => true }) }
+      it { should eq(:env => 'test', :nested => { :foo => 'bar', :baz => true }) }
     end
 
   end
@@ -104,8 +104,8 @@ describe HasConfiguration::Configuration do
     let(:fixture) { 'spec/fixtures/with_nested_attributes.yml' }
 
     it "is structified" do
-      expect(configuration.to_h[:development]   ).to eql('development')
-      expect(configuration.development          ).to eql('development')
+      expect(configuration.to_h[:env]           ).to eql('test')
+      expect(configuration.env                  ).to eql('test')
 
       expect(configuration.to_h[:nested]['foo'] ).to eql('bar')
       expect(configuration.nested.foo           ).to eql('bar')

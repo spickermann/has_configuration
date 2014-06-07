@@ -1,5 +1,5 @@
-development:
-  development: development
+test:
+  env: test
   nested:
     foo: bar
     baz: true
