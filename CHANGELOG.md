@@ -1,10 +1,12 @@
 *current master*
 
+* Improves README.md
+
 *0.2.3 (June 7, 2014)*
 
 * Adds coveralls
-* Support for Ruby 2.1.x
-* Update to RSpec 3.0
+* Adds support for Ruby 2.1.x
+* Updates to RSpec 3.0
 
 *0.2.2 (December 19, 2013)*
 

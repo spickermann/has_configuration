@@ -84,3 +84,12 @@ Foo.configuration.to_h(:symbolized)       # => { :user => "root", :password => "
 Foo.configuration.to_h(:stringify)        # => { 'user' => "root", 'password' => "prod-secret"
                                           #      'some' => { 'nested' => "value" } }
 ```
+
+Contributing
+------------
+
+1. [Fork it](http://github.com/spickermann/has_configuration/fork)
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
