@@ -57,7 +57,7 @@ development:
   password: secret
 production:
   <<: *defaults
-  password: <%= ENV[:secret] &>
+  password: <%= ENV[:secret] %>
 ```
 
 Configuration Retrieval
