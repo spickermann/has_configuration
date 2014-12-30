@@ -1,5 +1,6 @@
 require 'active_support/core_ext/hash/indifferent_access'
 require 'ostruct'
+require 'yaml'
 
 module HasConfiguration #:nodoc:all
   class Configuration
