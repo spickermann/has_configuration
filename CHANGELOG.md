@@ -1,8 +1,7 @@
 *current master*
 
-* Add support for Ruby 2.2.x
-* Fixes typo in README
-
+* Reorganises spec configuration
+* Adds support for Ruby 2.2.x
 * Improves README.md
 
 *0.2.3 (June 7, 2014)*
