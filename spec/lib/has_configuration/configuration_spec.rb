@@ -1,9 +1,8 @@
 require 'has_configuration'
-require 'has_configuration/configuration'
 
 require 'support/rails_mock'
 
-describe HasConfiguration::Configuration do
+RSpec.describe HasConfiguration::Configuration do
   let(:klass) { Class }
 
   before do

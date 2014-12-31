@@ -1,11 +1,10 @@
-require 'spec_helper'
-
-describe HasConfiguration do
+RSpec.describe HasConfiguration do
 
   context "when declared" do
 
     before(:all) do
       Dummy = Class.new do
+        require 'has_configuration'
         has_configuration :file => 'spec/fixtures/class.yml'
       end
     end

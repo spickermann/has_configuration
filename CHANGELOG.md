@@ -1,6 +1,6 @@
 *current master*
 
-* Reorganises spec configuration
+* Reorganises RSpec configuration
 * Adds support for Ruby 2.2.x
 * Improves README.md
 
