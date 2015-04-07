@@ -2,9 +2,8 @@ require 'active_support/core_ext/hash/indifferent_access'
 require 'ostruct'
 require 'yaml'
 
-module HasConfiguration #:nodoc:all
-  class Configuration
-
+module HasConfiguration #:nodoc:
+  class Configuration #:nodoc:
     def initialize(klass, options = {})
       @class_name = klass.name
       @options    = options
@@ -51,7 +50,8 @@ module HasConfiguration #:nodoc:all
         filename = "#{@class_name.downcase}.yml"
         defined?(Rails) ? Rails.root.join('config', filename).to_s : filename
       else
-        raise ArgumentError, "Unable to resolve filename, please add :file parameter to has_configuration"
+        fail ArgumentError,
+             'Unable to resolve filename, please add :file parameter to has_configuration'
       end
     end
 
@@ -71,7 +71,9 @@ module HasConfiguration #:nodoc:all
     end
 
     def deep_symbolized_hash
-      @deep_symbolized_hash ||= deep_transform_keys(@hash) { |key| key.to_sym rescue key }
+      @deep_symbolized_hash ||= deep_transform_keys(@hash) do |key|
+        key.respond_to?(:to_sym) ? key.to_sym : key
+      end
     end
 
     def deep_stringified_hash
@@ -86,6 +88,5 @@ module HasConfiguration #:nodoc:all
       end if hash
       result
     end
-
   end
 end
