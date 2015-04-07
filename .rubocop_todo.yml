@@ -8,8 +8,3 @@
 # Offense count: 4
 Style/Documentation:
   Enabled: false
-
-# Offense count: 1
-# Configuration parameters: NamePrefix, NamePrefixBlacklist.
-Style/PredicateName:
-  Enabled: false

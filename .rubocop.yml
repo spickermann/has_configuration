@@ -1,7 +1,15 @@
 inherit_from: .rubocop_todo.yml
 
+# personal preferences
+
 Style/AccessModifierIndentation:
   EnforcedStyle: outdent
 
 Metrics/LineLength:
   Max: 99
+
+# gem specific configurations
+
+Style/PredicateName:
+  Enabled: false      # because this gem's name has the prefix `has_`
+
