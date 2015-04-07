@@ -22,7 +22,8 @@ module HasConfiguration #:nodoc:
     # ==== Integration Examples
     #
     #   has_configuration
-    #   # => loads setting without environment processing from the file #{self.class.name.downcase}.yml
+    #   # => loads setting without environment processing from the
+    #   #    file #{self.class.name.downcase}.yml
     #
     #   has_configuration :file => Rails.root.join('config', 'example.yml'), :env => 'staging'
     #   # => loads settings for staging environment from RAILS_ROOT/config/example.yml file
@@ -56,15 +57,18 @@ module HasConfiguration #:nodoc:
     #   Foo.configuration.some.nested             # => "value"
     #
     #   # to_h returns a HashWithIndifferentAccess
-    #   Foo.configuration.to_h                    # => { :user => "root", :password => "prod-secret"
+    #   Foo.configuration.to_h                    # => { :user => "root",
+    #                                             #      :password => "prod-secret",
     #                                             #      :some => { :nested => "value" } }
     #   Foo.configuration.to_h[:some][:nested]    # => "value"
     #   Foo.configuration.to_h[:some]['nested']   # => "value"
     #
     #   # force a special key type (when merging with other hashes)
-    #   Foo.configuration.to_h(:symbolized)       # => { :user => "root", :password => "prod-secret"
+    #   Foo.configuration.to_h(:symbolized)       # => { :user => "root",
+    #                                             #      :password => "prod-secret",
     #                                             #      :some => { :nested => "value" } }
-    #   Foo.configuration.to_h(:stringify)        # => { 'user' => "root", 'password' => "prod-secret"
+    #   Foo.configuration.to_h(:stringify)        # => { 'user' => "root",
+    #                                             #      'password' => "prod-secret",
     #                                             #      'some' => { 'nested' => "value" } }
     #
     def has_configuration(options = {})
