@@ -16,12 +16,6 @@ Style/PredicateName:
 
 # Offense count: 2
 # Cop supports --auto-correct.
-# Configuration parameters: AllowIfMethodIsEmpty.
-Style/SingleLineMethods:
-  Enabled: false
-
-# Offense count: 2
-# Cop supports --auto-correct.
 Style/SpaceBeforeSemicolon:
   Enabled: false
 
