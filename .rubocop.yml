@@ -1,13 +1,2 @@
-# personal preferences
-
-Style/AccessModifierIndentation:
-  EnforcedStyle: outdent
-
-Metrics/LineLength:
-  Max: 99
-
-# gem specific configurations
-
-Style/PredicateName:
-  Enabled: false      # because this gem's name has the prefix `has_`
-
+inherit_from:
+  '.ruby-style.yml'
