@@ -1,13 +1,11 @@
 require 'has_configuration/configuration'
 
 module HasConfiguration #:nodoc:
-
   def self.included(base)
     base.extend(ClassMethods)
   end
 
   module ClassMethods
-
     # Load configuration settings from a yaml file and adds a class and an instance
     # method +configuration+ to the object.
     #
@@ -77,7 +75,6 @@ module HasConfiguration #:nodoc:
     end
 
     module Getter #:nodoc:all
-
       def self.included(base)
         base.extend(ClassMethods)
       end
@@ -91,11 +88,8 @@ module HasConfiguration #:nodoc:
       def configuration
         self.class.configuration
       end
-
     end
-
   end
-
 end
 
 class Object #:nodoc:
