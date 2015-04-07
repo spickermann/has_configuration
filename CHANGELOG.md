@@ -1,5 +1,7 @@
 *current master*
 
+*0.2.4 (March 7, 2015)*
+
 * Reorganises RSpec configuration
 * Adds support for Ruby 2.2.x
 * Improves README.md
