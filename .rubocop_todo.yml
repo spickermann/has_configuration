@@ -14,16 +14,6 @@ Style/Documentation:
 Style/PredicateName:
   Enabled: false
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/SpaceBeforeSemicolon:
-  Enabled: false
-
-# Offense count: 4
-# Cop supports --auto-correct.
-Style/SpaceInsideParens:
-  Enabled: false
-
 # Offense count: 25
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.

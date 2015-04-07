@@ -103,11 +103,11 @@ RSpec.describe HasConfiguration::Configuration do
     let(:fixture) { 'spec/fixtures/with_nested_attributes.yml' }
 
     it "is structified" do
-      expect(configuration.to_h[:env]           ).to eql('test')
-      expect(configuration.env                  ).to eql('test')
+      expect(configuration.to_h[:env]).to eql('test')
+      expect(configuration.env).to eql('test')
 
-      expect(configuration.to_h[:nested]['foo'] ).to eql('bar')
-      expect(configuration.nested.foo           ).to eql('bar')
+      expect(configuration.to_h[:nested]['foo']).to eql('bar')
+      expect(configuration.nested.foo).to eql('bar')
     end
   end
 end
