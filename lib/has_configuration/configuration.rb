@@ -2,8 +2,8 @@ require 'active_support/core_ext/hash/indifferent_access'
 require 'ostruct'
 require 'yaml'
 
-module HasConfiguration #:nodoc:all
-  class Configuration
+module HasConfiguration #:nodoc:
+  class Configuration #:nodoc:
     def initialize(klass, options = {})
       @class_name = klass.name
       @options    = options

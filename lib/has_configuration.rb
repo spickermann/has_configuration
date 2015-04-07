@@ -5,7 +5,7 @@ module HasConfiguration #:nodoc:
     base.extend(ClassMethods)
   end
 
-  module ClassMethods
+  module ClassMethods #:nodoc:
     # Load configuration settings from a yaml file and adds a class and an instance
     # method +configuration+ to the object.
     #
@@ -74,12 +74,13 @@ module HasConfiguration #:nodoc:
       include Getter
     end
 
-    module Getter #:nodoc:all
+    # Adds getters for the configuration
+    module Getter
       def self.included(base)
         base.extend(ClassMethods)
       end
 
-      module ClassMethods
+      module ClassMethods #:nodoc:
         attr_reader :configuration
       end
 
