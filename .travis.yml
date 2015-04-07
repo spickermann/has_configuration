@@ -6,3 +6,6 @@ rvm:
   - 2.2.1
 gemfile:
   - gemfiles/Gemfile.ci
+script:
+  - bundle exec rspec
+  - bundle exec rubocop
