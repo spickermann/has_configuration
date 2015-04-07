@@ -12,11 +12,18 @@ Load configuration settings from a yaml file and adds a class and an instance me
 Installation
 ------------
 
-Include the gem in your Gemfile:
+Include the gem to your Gemfile:
 
 ```ruby
-gem "has_configuration"
+gem 'has_configuration'
 ```
+
+If you still use Ruby 1.8 or Ruby on Rails 2.3:
+
+```ruby
+gem 'has_configuration', '~> 0.2.4'
+```
+
 
 Usage
 -----
@@ -67,7 +74,7 @@ If the example above was loaded into a class `Foo` in `production` environment:
 
 ```ruby
 Foo.configuration                         # => <HasConfiguration::Configuration:0x00...>
-foo.new.configuration                     # => <HasConfiguration::Configuration:0x00...>
+Foo.new.configuration                     # => <HasConfiguration::Configuration:0x00...>
 
 # convenient getter methods
 Foo.configuration.some.nested             # => "value"

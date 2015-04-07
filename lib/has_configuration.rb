@@ -49,7 +49,7 @@ module HasConfiguration #:nodoc:
     # If the example above was loaded into a class +Foo+ in +production+ environment:
     #
     #   Foo.configuration       # => <HasConfiguration::Configuration:0x00...>
-    #   foo.new.configuration   # => <HasConfiguration::Configuration:0x00...>
+    #   Foo.new.configuration   # => <HasConfiguration::Configuration:0x00...>
     #
     #   # convenient getter methods
     #   Foo.configuration.some.nested             # => "value"
