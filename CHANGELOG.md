@@ -1,5 +1,6 @@
 *current master*
 
+* Drops support for Ruby 1.8.x and Rails 2.3.x
 * Adds Rubocop gem
 
 *0.2.4 (April 7, 2015)*

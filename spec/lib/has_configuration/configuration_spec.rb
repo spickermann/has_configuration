@@ -28,7 +28,7 @@ RSpec.describe HasConfiguration::Configuration do
 
       it "loads provided file" do
         expect_any_instance_of(Configuration).to receive(:raw_file).with(file)
-        HasConfiguration::Configuration.new(klass, :file => file)
+        HasConfiguration::Configuration.new(klass, file: file)
       end
     end
   end
@@ -50,7 +50,7 @@ RSpec.describe HasConfiguration::Configuration do
       context "with env option" do
         let(:environment) { 'production' }
 
-        subject(:hash) { HasConfiguration::Configuration.new(klass, :env => environment).to_h }
+        subject(:hash) { HasConfiguration::Configuration.new(klass, env: environment).to_h }
 
         it 'return the expected hash' do
           expect(hash).to eq('env' => environment)
@@ -94,7 +94,7 @@ RSpec.describe HasConfiguration::Configuration do
 
     context "#to_h(:symbolized)" do
       subject { HasConfiguration::Configuration.new(klass).to_h(:symbolized) }
-      it { should eq(:env => 'test', :nested => { :foo => 'bar', :baz => true }) }
+      it { should eq(env: 'test', nested: { foo: 'bar', baz: true }) }
     end
   end
 

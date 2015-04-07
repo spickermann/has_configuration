@@ -25,7 +25,7 @@ Usage
 has_configuration
 # => loads setting without environment processing from the file #{self.class.name.downcase}.yml
 
-has_configuration :file => Rails.root.join('config', 'example.yml'), :env => 'staging'
+has_configuration file: Rails.root.join('config', 'example.yml'), env: 'staging'
 # => loads settings for staging environment from RAILS_ROOT/config/example.yml file
 ```
 

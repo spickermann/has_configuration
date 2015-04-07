@@ -3,7 +3,7 @@ RSpec.describe HasConfiguration do
     before(:all) do
       Dummy = Class.new do
         require 'has_configuration'
-        has_configuration :file => 'spec/fixtures/class.yml'
+        has_configuration file: 'spec/fixtures/class.yml'
       end
     end
 

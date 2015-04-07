@@ -1,24 +1,10 @@
 source 'https://rubygems.org'
 
-if RUBY_VERSION < "1.9"
+gem 'activesupport', '>= 3.2.0'
 
-  gem 'activesupport', '~> 3.2.0'
-  gem 'i18n',          '~> 0.6.0'
-
-  group :test do
-    gem 'rspec'
-    gem 'rake'
-  end
-
-else
-
-  gem 'activesupport', '>= 2.3.5'
-
-  group :test do
-    gem 'coveralls', :require => false
-    gem 'rake'
-    gem 'rspec'
-    gem 'rubocop', :require => false
-  end
-
+group :test do
+  gem 'coveralls',  require: false
+  gem 'rake'
+  gem 'rspec'
+  gem 'rubocop',    require: false
 end
