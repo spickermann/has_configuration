@@ -1,5 +1,7 @@
 *current master*
 
+* Adds Rubocop gem
+
 *0.2.4 (April 7, 2015)*
 
 * Reorganises RSpec configuration
