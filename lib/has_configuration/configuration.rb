@@ -4,7 +4,6 @@ require 'yaml'
 
 module HasConfiguration #:nodoc:all
   class Configuration
-
     def initialize(klass, options = {})
       @class_name = klass.name
       @options    = options
@@ -87,6 +86,5 @@ module HasConfiguration #:nodoc:all
       end if hash
       result
     end
-
   end
 end
