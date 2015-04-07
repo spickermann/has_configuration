@@ -1,9 +1,12 @@
 # personal preferences
-Style/AccessModifierIndentation:
-  EnforcedStyle: outdent
-
 Metrics/LineLength:
   Max: 99
+
+StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/AccessModifierIndentation:
+  EnforcedStyle: outdent
 
 # gem specific configurations
 Style/PredicateName:
