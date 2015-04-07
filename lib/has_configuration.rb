@@ -80,9 +80,7 @@ module HasConfiguration #:nodoc:
       end
 
       module ClassMethods
-        def configuration
-          @configuration
-        end
+        attr_reader :configuration
       end
 
       def configuration
