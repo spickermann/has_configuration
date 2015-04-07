@@ -71,7 +71,9 @@ module HasConfiguration #:nodoc:all
     end
 
     def deep_symbolized_hash
-      @deep_symbolized_hash ||= deep_transform_keys(@hash) { |key| key.to_sym rescue key }
+      @deep_symbolized_hash ||= deep_transform_keys(@hash) do |key|
+        key.respond_to?(:to_sym) ? key.to_sym : key
+      end
     end
 
     def deep_stringified_hash
