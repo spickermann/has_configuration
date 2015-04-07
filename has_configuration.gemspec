@@ -4,7 +4,6 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'version'
 
 Gem::Specification.new do |spec|
-
   spec.authors      = ['Martin Spickermann']
   spec.email        = ['spickermann@gmail.com']
   spec.homepage     = 'https://github.com/spickermann/has_configuration'
@@ -29,5 +28,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency('rspec')
   spec.add_development_dependency('coveralls')
   spec.add_development_dependency('rubocop')
-
 end

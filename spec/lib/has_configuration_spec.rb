@@ -1,7 +1,5 @@
 RSpec.describe HasConfiguration do
-
   context "when declared" do
-
     before(:all) do
       Dummy = Class.new do
         require 'has_configuration'
@@ -28,7 +26,5 @@ RSpec.describe HasConfiguration do
         expect(dummy.configuration).to be
       end
     end
-
   end
-
 end

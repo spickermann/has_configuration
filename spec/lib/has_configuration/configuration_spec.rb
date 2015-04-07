@@ -56,7 +56,6 @@ RSpec.describe HasConfiguration::Configuration do
           expect(hash).to eq('env' => environment)
         end
       end
-
     end
 
     context "yaml defaults" do
@@ -78,7 +77,6 @@ RSpec.describe HasConfiguration::Configuration do
         expect(hash).to eq('erb' => Rails.env)
       end
     end
-
   end
 
   describe "#to_h" do
@@ -98,7 +96,6 @@ RSpec.describe HasConfiguration::Configuration do
       subject { HasConfiguration::Configuration.new(klass).to_h(:symbolized) }
       it { should eq(:env => 'test', :nested => { :foo => 'bar', :baz => true }) }
     end
-
   end
 
   describe "struct methods" do
