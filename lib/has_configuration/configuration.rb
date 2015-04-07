@@ -51,7 +51,7 @@ module HasConfiguration #:nodoc:all
         defined?(Rails) ? Rails.root.join('config', filename).to_s : filename
       else
         fail ArgumentError,
-             "Unable to resolve filename, please add :file parameter to has_configuration"
+             'Unable to resolve filename, please add :file parameter to has_configuration'
       end
     end
 
