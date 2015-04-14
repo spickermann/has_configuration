@@ -1,5 +1,7 @@
 *current master*
 
+* Ensure Ruby 2.2.2 compability
+
 *1.0.0 (April 7, 2015)*
 
 * Drops support for Ruby 1.8.x and Rails 2.3.x
