@@ -8,6 +8,9 @@ StringLiterals:
 Style/AccessModifierIndentation:
   EnforcedStyle: outdent
 
+Style/Documentation:
+  Enabled: false
+
 # gem specific configurations
 Style/PredicateName:
   Enabled: false      # because this gem's name has the prefix `has_`
