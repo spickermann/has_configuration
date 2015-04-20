@@ -22,8 +22,9 @@ Gem::Specification.new do |spec|
 
   spec.require_path = ['lib']
 
-  spec.add_dependency('activesupport', '>= 3.2.0')
+  spec.required_ruby_version = '>= 1.9.3'
 
+  spec.add_dependency('activesupport', '>= 3.2.0')
   spec.add_development_dependency('rake')
   spec.add_development_dependency('rspec')
   spec.add_development_dependency('coveralls')
