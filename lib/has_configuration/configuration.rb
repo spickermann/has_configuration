@@ -32,7 +32,7 @@ module HasConfiguration #:nodoc:
 
     def init_hash
       @hash = (@raw || {}).with_indifferent_access
-      @hash = @hash[environment]        if environment
+      @hash = @hash[environment] if environment
     end
 
     def raw_file(filename)
@@ -57,8 +57,8 @@ module HasConfiguration #:nodoc:
 
     def environment
       case
-      when @options.keys.include?(:env)   then @options[:env]
-      when defined?(Rails)                then Rails.env.to_s
+      when @options.keys.include?(:env) then @options[:env]
+      when defined?(Rails)              then Rails.env.to_s
       end
     end
 
@@ -77,7 +77,7 @@ module HasConfiguration #:nodoc:
     end
 
     def deep_stringified_hash
-      @deep_stringified_hash ||= deep_transform_keys(@hash) { |key| key.to_s }
+      @deep_stringified_hash ||= deep_transform_keys(@hash, &:to_s)
     end
 
     # from Rails 4.0 (/active_support/core_ext/hash/keys.rb)
