@@ -1,5 +1,6 @@
 *current master*
 
+* Ensure Ruby 2.3.0 compability
 * Ensure Ruby 2.2.4 compability
 
 *1.0.0 (April 7, 2015)*
