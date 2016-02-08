@@ -50,8 +50,8 @@ module HasConfiguration #:nodoc:
         filename = "#{@class_name.downcase}.yml"
         defined?(Rails) ? Rails.root.join('config', filename).to_s : filename
       else
-        fail ArgumentError,
-             'Unable to resolve filename, please add :file parameter to has_configuration'
+        raise ArgumentError,
+              'Unable to resolve filename, please add :file parameter to has_configuration'
       end
     end
 
