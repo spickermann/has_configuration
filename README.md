@@ -8,7 +8,7 @@ Load configuration settings from a yaml file and adds a class and an instance me
 [![Build Status](https://travis-ci.org/spickermann/has_configuration.svg)](https://travis-ci.org/spickermann/has_configuration)
 [![Coverage Status](https://coveralls.io/repos/spickermann/has_configuration/badge.svg?branch=master)](https://coveralls.io/r/spickermann/has_configuration?branch=master)
 [![Code Climate](https://codeclimate.com/github/spickermann/has_configuration/badges/gpa.svg)](https://codeclimate.com/github/spickermann/has_configuration)
-[![Dependency Status](https://gemnasium.com/spickermann/has_configuration.svg)](https://gemnasium.com/spickermann/has_configuration)
+[![Dependency Status](https://gemnasium.com/badges/github.com/spickermann/has_configuration.svg)](https://gemnasium.com/github.com/spickermann/has_configuration)
 
 Installation
 ------------
