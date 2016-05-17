@@ -56,10 +56,8 @@ module HasConfiguration #:nodoc:
     end
 
     def environment
-      case
-      when @options.keys.include?(:env) then @options[:env]
-      when defined?(Rails)              then Rails.env.to_s
-      end
+      return @options[:env] if @options.keys.include?(:env)
+      return Rails.env.to_s if defined?(Rails)
     end
 
     def deep_structify(hash)
