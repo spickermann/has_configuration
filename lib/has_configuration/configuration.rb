@@ -23,7 +23,11 @@ module HasConfiguration #:nodoc:
   private
 
     def method_missing(sym, *args, &block)
-      configuration.send(sym, *args, &block)
+      configuration.send(sym, *args, &block) || super
+    end
+
+    def respond_to_missing?(sym, include_private = false)
+      configuration.respond_to?(sym, include_private)
     end
 
     def load_file
