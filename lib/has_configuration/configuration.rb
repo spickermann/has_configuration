@@ -65,10 +65,8 @@ module HasConfiguration #:nodoc:
     end
 
     def deep_structify(hash)
-      result = {}
-      hash.each do |key, value|
-        result[key] = value.is_a?(Hash) ? deep_structify(value) : value
-      end if hash
+      hash ||= {}
+      result = Hash[hash.map { |k, v| [k, v.is_a?(Hash) ? deep_structify(v) : v] }]
       OpenStruct.new(result)
     end
 
@@ -85,9 +83,11 @@ module HasConfiguration #:nodoc:
     # from Rails 4.0 (/active_support/core_ext/hash/keys.rb)
     def deep_transform_keys(hash, &block)
       result = {}
-      hash.each do |key, value|
-        result[yield(key)] = value.is_a?(Hash) ? deep_transform_keys(value, &block) : value
-      end if hash
+      if hash
+        hash.each do |key, value|
+          result[yield(key)] = value.is_a?(Hash) ? deep_transform_keys(value, &block) : value
+        end
+      end
       result
     end
   end
