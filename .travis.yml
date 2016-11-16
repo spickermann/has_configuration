@@ -7,9 +7,9 @@ matrix:
       gemfile: gemfiles/Gemfile.ruby-2.0.ci
     - rvm: 2.1.10
       gemfile: gemfiles/Gemfile.ruby-2.0.ci
-    - rvm: 2.2.5
+    - rvm: 2.2.6
       gemfile: gemfiles/Gemfile.ruby-2.2.ci
-    - rvm: 2.3.1
+    - rvm: 2.3.2
       gemfile: gemfiles/Gemfile.ruby-2.2.ci
 script:
   - bundle exec rspec
