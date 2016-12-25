@@ -11,6 +11,9 @@ matrix:
       gemfile: gemfiles/Gemfile.ruby-2.2.ci
     - rvm: 2.3.3
       gemfile: gemfiles/Gemfile.ruby-2.2.ci
+    - rvm: 2.4.0
+      gemfile: gemfiles/Gemfile.ruby-2.2.ci
+
 script:
   - bundle exec rspec
   - bundle exec rubocop

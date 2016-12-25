@@ -1,5 +1,6 @@
 *current master*
 
+* Ensure Ruby 2.4.0 compability
 * Ensure Ruby 2.3.3 compability
 * Ensure Ruby 2.2.6 compability
 * Ensure Ruby 2.1.10 compability
