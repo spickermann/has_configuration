@@ -1,6 +1,6 @@
 module HasConfiguration #:nodoc:
   module VERSION #:nodoc:
-    MAJOR = 1
+    MAJOR = 2
     MINOR = 0
     BUILD = 0
 
