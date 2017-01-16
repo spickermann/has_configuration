@@ -1,16 +1,17 @@
+AllCops:
+  TargetRubyVersion: 2.0
+
 # personal preferences
 Metrics/LineLength:
   Max: 99
-
-StringLiterals:
-  EnforcedStyle: single_quotes
-
-Style/AccessModifierIndentation:
-  EnforcedStyle: outdent
 
 Style/Documentation:
   Enabled: false
 
 # gem specific configurations
 Style/PredicateName:
-  Enabled: false      # because this gem's name has the prefix `has_`
+  Enabled: false # because this gem's name has the prefix `has_`
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*_spec.rb' # because RSpec's DSL encourages lengthly blocks

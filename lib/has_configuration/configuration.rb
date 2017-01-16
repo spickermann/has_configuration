@@ -20,7 +20,7 @@ module HasConfiguration #:nodoc:
       end
     end
 
-  private
+    private
 
     def method_missing(sym, *args, &block)
       configuration.send(sym, *args, &block) || super
