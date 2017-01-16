@@ -1,5 +1,7 @@
 *current master*
 
+* Use `YAML.safe_load` (which was introduced in Ruby 2.1.0)
+* Drop Support for Ruby 1.9 and 2.0
 * Ensure Ruby 2.4.0 compability
 * Ensure Ruby 2.3.3 compability
 * Ensure Ruby 2.2.6 compability

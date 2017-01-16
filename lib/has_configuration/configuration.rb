@@ -31,7 +31,12 @@ module HasConfiguration #:nodoc:
     end
 
     def load_file
-      @raw = YAML.load(ERB.new(raw_file(filename)).result)
+      @raw = YAML.safe_load(
+        ERB.new(raw_file(filename)).result,
+        [],  # whitelist_classes
+        [],  # whitelist_symbols
+        true # allow aliases
+      )
     end
 
     def init_hash

@@ -1,12 +1,8 @@
 language: ruby
 matrix:
   include:
-    - rvm: 1.9.3
-      gemfile: gemfiles/Gemfile.ruby-1.9.ci
-    - rvm: 2.0.0
-      gemfile: gemfiles/Gemfile.ruby-2.0.ci
     - rvm: 2.1.10
-      gemfile: gemfiles/Gemfile.ruby-2.0.ci
+      gemfile: gemfiles/Gemfile.ruby-2.1.ci
     - rvm: 2.2.6
       gemfile: gemfiles/Gemfile.ruby-2.2.ci
     - rvm: 2.3.3
