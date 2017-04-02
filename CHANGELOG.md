@@ -1,4 +1,4 @@
-* 1.0.0 (April 7, 2015)*
+*2.0.0 (January 16, 2017)*
 
 * Drops support for Ruby 1.9 and 2.0
 * Use `YAML.safe_load` (which was introduced in Ruby 2.1.0)
