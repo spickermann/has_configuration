@@ -11,10 +11,10 @@ Gem::Specification.new do |spec|
   spec.name         = 'has_configuration'
   spec.version      = HasConfiguration::VERSION::STRING
   spec.summary      = 'Simple configuration handling'
-  spec.description  = <<-EOD
+  spec.description  = <<-DESCRIPTION
     Loads configuration setting from a yml file and adds a configuation method
     to class and instances
-  EOD
+  DESCRIPTION
 
   spec.license      = 'MIT'
 

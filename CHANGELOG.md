@@ -2,9 +2,9 @@
 
 * Drops support for Ruby 1.9 and 2.0
 * Use `YAML.safe_load` (which was introduced in Ruby 2.1.0)
-* Ensure Ruby 2.4.0 compability
-* Ensure Ruby 2.3.3 compability
-* Ensure Ruby 2.2.6 compability
+* Ensure Ruby 2.4.2 compability
+* Ensure Ruby 2.3.5 compability
+* Ensure Ruby 2.2.8 compability
 * Ensure Ruby 2.1.10 compability
 
 *1.0.0 (April 7, 2015)*
