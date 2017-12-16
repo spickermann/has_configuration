@@ -71,7 +71,7 @@ module HasConfiguration #:nodoc:
     #
     def has_configuration(options = {})
       @configuration = Configuration.new(self, options)
-      include Getter
+      include Getter # rubocop:disable Style/MixinUsage
     end
 
     # Adds getters for the configuration
