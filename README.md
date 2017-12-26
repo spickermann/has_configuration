@@ -25,7 +25,6 @@ If you still use Ruby 1.8 or Ruby on Rails 2.3:
 gem 'has_configuration', '~> 0.2.4'
 ```
 
-
 Usage
 -----
 

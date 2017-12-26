@@ -1,14 +1,10 @@
+sudo: false
 language: ruby
-matrix:
-  include:
-    - rvm: 2.1.10
-      gemfile: gemfiles/Gemfile.ruby-2.1.ci
-    - rvm: 2.2.9
-      gemfile: gemfiles/Gemfile.ruby-2.2.ci
-    - rvm: 2.3.6
-      gemfile: gemfiles/Gemfile.ruby-2.2.ci
-    - rvm: 2.4.3
-      gemfile: gemfiles/Gemfile.ruby-2.2.ci
+rvm:
+  - 2.2.9
+  - 2.3.6
+  - 2.4.3
+  - 2.5.0
 
 script:
   - bundle exec rspec

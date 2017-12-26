@@ -1,3 +1,8 @@
+*3.0.0 (January 16, 2017)*
+
+* Drops support for Ruby 2.1
+* Ensure Ruby 2.5 compability
+
 *2.0.0 (January 16, 2017)*
 
 * Drops support for Ruby 1.9 and 2.0
