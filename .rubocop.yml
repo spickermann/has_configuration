@@ -1,2 +1,4 @@
 inherit_from:
   '.ruby-style.yml'
+require:
+  'rubocop-rspec'

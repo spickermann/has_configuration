@@ -6,7 +6,7 @@ RSpec.describe HasConfiguration::Configuration do
   let(:klass) { Class }
 
   before do
-    allow_any_instance_of(
+    allow_any_instance_of( # rubocop:disable RSpec/AnyInstance
       Configuration
     ).to receive(:raw_file).and_return(File.read(fixture))
   end
@@ -18,8 +18,8 @@ RSpec.describe HasConfiguration::Configuration do
       let(:file) { '/RAILS_ROOT/config/class.yml' }
 
       it 'loads default file' do
-        expect_any_instance_of(Configuration).to receive(:raw_file).with(file)
-        HasConfiguration::Configuration.new(klass)
+        configuration = described_class.new(klass)
+        expect(configuration).to have_received(:raw_file).with(file)
       end
     end
 
@@ -27,8 +27,8 @@ RSpec.describe HasConfiguration::Configuration do
       let(:file) { 'foo/bar.yml' }
 
       it 'loads provided file' do
-        expect_any_instance_of(Configuration).to receive(:raw_file).with(file)
-        HasConfiguration::Configuration.new(klass, file: file)
+        configuration = described_class.new(klass, file: file)
+        expect(configuration).to have_received(:raw_file).with(file)
       end
     end
   end
@@ -36,32 +36,31 @@ RSpec.describe HasConfiguration::Configuration do
   context 'when initialized' do
     let(:environment) { nil }
 
-    context 'environment' do
+    context 'without env option' do
+      subject(:hash) { described_class.new(klass).to_h }
+
       let(:fixture) { 'spec/fixtures/class.yml' }
 
-      context 'without env option' do
-        subject(:hash) { HasConfiguration::Configuration.new(klass).to_h }
-
-        it 'return the expected hash' do
-          expect(hash).to eq('env' => 'test')
-        end
-      end
-
-      context 'with env option' do
-        let(:environment) { 'production' }
-
-        subject(:hash) { HasConfiguration::Configuration.new(klass, env: environment).to_h }
-
-        it 'return the expected hash' do
-          expect(hash).to eq('env' => environment)
-        end
+      it 'return the expected hash' do
+        expect(hash).to eq('env' => 'test')
       end
     end
 
-    context 'yaml defaults' do
-      let(:fixture) { 'spec/fixtures/with_defaults.yml' }
+    context 'with env option' do
+      subject(:hash) { described_class.new(klass, env: environment).to_h }
 
-      subject(:hash) { HasConfiguration::Configuration.new(klass).to_h }
+      let(:environment) { 'production' }
+      let(:fixture) { 'spec/fixtures/class.yml' }
+
+      it 'return the expected hash' do
+        expect(hash).to eq('env' => environment)
+      end
+    end
+
+    context 'with yaml defaults' do
+      subject(:hash) { described_class.new(klass).to_h }
+
+      let(:fixture) { 'spec/fixtures/with_defaults.yml' }
 
       it 'return the expected hash' do
         expect(hash).to eq('default' => 'default', 'env' => 'test')
@@ -69,9 +68,9 @@ RSpec.describe HasConfiguration::Configuration do
     end
 
     context 'with erb' do
-      let(:fixture) { 'spec/fixtures/with_erb.yml' }
+      subject(:hash) { described_class.new(klass).to_h }
 
-      subject(:hash) { HasConfiguration::Configuration.new(klass).to_h }
+      let(:fixture) { 'spec/fixtures/with_erb.yml' }
 
       it 'return the expected hash' do
         expect(hash).to eq('erb' => Rails.env)
@@ -82,27 +81,30 @@ RSpec.describe HasConfiguration::Configuration do
   describe '#to_h' do
     let(:fixture) { 'spec/fixtures/with_nested_attributes.yml' }
 
-    context '#to_h' do
-      subject { HasConfiguration::Configuration.new(klass).to_h }
-      it { should be_a(HashWithIndifferentAccess) }
+    context 'without arguments' do
+      subject { described_class.new(klass).to_h }
+
+      it { is_expected.to be_a(HashWithIndifferentAccess) }
     end
 
-    context '#to_h(:stringify)' do
-      subject { HasConfiguration::Configuration.new(klass).to_h(:stringify) }
-      it { should eq('env' => 'test', 'nested' => { 'foo' => 'bar', 'baz' => true }) }
+    context 'with :stringify' do
+      subject { described_class.new(klass).to_h(:stringify) }
+
+      it { is_expected.to eq('env' => 'test', 'nested' => { 'foo' => 'bar', 'baz' => true }) }
     end
 
-    context '#to_h(:symbolized)' do
-      subject { HasConfiguration::Configuration.new(klass).to_h(:symbolized) }
-      it { should eq(env: 'test', nested: { foo: 'bar', baz: true }) }
+    context 'with :symbolized' do
+      subject { described_class.new(klass).to_h(:symbolized) }
+
+      it { is_expected.to eq(env: 'test', nested: { foo: 'bar', baz: true }) }
     end
   end
 
   describe 'struct methods' do
-    let(:configuration) { HasConfiguration::Configuration.new(klass) }
+    let(:configuration) { described_class.new(klass) }
     let(:fixture) { 'spec/fixtures/with_nested_attributes.yml' }
 
-    it 'is structified' do
+    it 'supports multiple getter variants' do # rubocop:disable RSpec/MultipleExpectations
       expect(configuration.to_h[:env]).to eql('test')
       expect(configuration.env).to eql('test')
 

@@ -1,3 +1,7 @@
+*current master*
+
+* Adds `rubocop-rspec`
+
 *3.0.0 (January 16, 2017)*
 
 * Drops support for Ruby 2.1

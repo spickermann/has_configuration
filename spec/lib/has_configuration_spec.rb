@@ -1,26 +1,24 @@
 RSpec.describe HasConfiguration do
   context 'when declared' do
-    before(:all) do
-      Dummy = Class.new do
-        require 'has_configuration'
-        has_configuration file: 'spec/fixtures/class.yml'
-      end
+    Dummy = Class.new do
+      require 'has_configuration'
+      has_configuration file: 'spec/fixtures/class.yml'
     end
 
-    context 'the class' do
+    context 'with a class' do
       subject(:dummy) { Dummy }
 
-      it { should respond_to(:configuration) }
+      it { is_expected.to respond_to(:configuration) }
 
       it 'returns a configuration' do
         expect(dummy.configuration).to be
       end
     end
 
-    context 'an instance' do
+    context 'with an instance' do
       subject(:dummy) { Dummy.new }
 
-      it { should respond_to(:configuration) }
+      it { is_expected.to respond_to(:configuration) }
 
       it 'returns a configuration' do
         expect(dummy.configuration).to be
