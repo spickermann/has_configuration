@@ -65,7 +65,7 @@ module HasConfiguration #:nodoc:
     end
 
     def environment
-      return @options[:env] if @options.keys.include?(:env)
+      return @options[:env] if @options.key?(:env)
       return Rails.env.to_s if defined?(Rails)
     end
 
