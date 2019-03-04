@@ -1,7 +1,9 @@
 *current master*
 
+*3.0.1 (March 04, 2019)*
+
 * Adds `rubocop-rspec`
-* Ensure Ruby 2.6 compability
+* Ensure Ruby 2.6 compability (remove deprecation warning)
 
 *3.0.0 (January 16, 2017)*
 
