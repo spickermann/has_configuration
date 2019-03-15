@@ -1,8 +1,8 @@
 module HasConfiguration #:nodoc:
   module VERSION #:nodoc:
-    MAJOR = 3
+    MAJOR = 4
     MINOR = 0
-    BUILD = 1
+    BUILD = 0
 
     STRING = [MAJOR, MINOR, BUILD].join('.')
   end

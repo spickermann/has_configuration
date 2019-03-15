@@ -1,5 +1,9 @@
 *current master*
 
+*4.0.0 (March 15, 2019)*
+
+* Drop support for Rails `<4.2.2` (remove CVE-2015-3227 warning)
+
 *3.0.1 (March 04, 2019)*
 
 * Adds `rubocop-rspec`
