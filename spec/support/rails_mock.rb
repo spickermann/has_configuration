@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Mocks Rails Environment
 Rails = Class.new do
   def self.root

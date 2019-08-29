@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_support/core_ext/hash/indifferent_access'
 require 'ostruct'
 require 'yaml'
@@ -92,10 +94,8 @@ module HasConfiguration #:nodoc:
     # from Rails 4.0 (/active_support/core_ext/hash/keys.rb)
     def deep_transform_keys(hash, &block)
       result = {}
-      if hash
-        hash.each do |key, value|
-          result[yield(key)] = value.is_a?(Hash) ? deep_transform_keys(value, &block) : value
-        end
+      hash&.each do |key, value|
+        result[yield(key)] = value.is_a?(Hash) ? deep_transform_keys(value, &block) : value
       end
       result
     end

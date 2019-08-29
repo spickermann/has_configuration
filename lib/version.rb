@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module HasConfiguration #:nodoc:
   module VERSION #:nodoc:
     MAJOR = 4

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe HasConfiguration do
   context 'when declared' do
     Dummy = Class.new do

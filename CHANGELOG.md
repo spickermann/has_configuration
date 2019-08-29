@@ -1,6 +1,7 @@
 *current master*
 
 * Ensure Rails 6.0 compability
+* Drops support for Ruby 2.2
 
 *4.0.0 (March 15, 2019)*
 
