@@ -18,7 +18,7 @@ Include the gem to your Gemfile:
 gem 'has_configuration'
 ```
 
-If you still use Ruby 1.8 or Ruby on Rails 2.3:
+When you are still on Ruby 1.8 or on Ruby on Rails 2.3:
 
 ```ruby
 gem 'has_configuration', '~> 0.2.4'
