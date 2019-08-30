@@ -30,6 +30,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency('coveralls')
   spec.add_development_dependency('rake')
   spec.add_development_dependency('rspec')
-  spec.add_development_dependency('rubocop', '< 0.75') # still support TargetRubyVersion 2.2
+  spec.add_development_dependency('rubocop', '< 0.75')
   spec.add_development_dependency('rubocop-rspec')
 end
