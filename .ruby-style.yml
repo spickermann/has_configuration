@@ -2,7 +2,7 @@ AllCops:
   TargetRubyVersion: 2.3
 
 # personal preferences
-Metrics/LineLength:
+Layout/LineLength:
   Max: 99
 
 Style/Documentation:
