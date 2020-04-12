@@ -2,7 +2,7 @@
 
 module HasConfiguration #:nodoc:
   module VERSION #:nodoc:
-    MAJOR = 4
+    MAJOR = 5
     MINOR = 0
     BUILD = 0
 

@@ -1,9 +1,12 @@
 *current master*
 
+*5.0.0 (April 12, 2020)*
+
 * Ensure Rails 6.0 compability
 * Ensure Ruby 2.7 compability
 * Drops support for Ruby 2.2
 * Drops support for Ruby 2.3
+* Improves performance by using methods introduced with Ruby 2.4
 * Stop testing against Ruby 2.4
 
 *4.0.0 (March 15, 2019)*
