@@ -77,7 +77,7 @@ module HasConfiguration #:nodoc:
 
     def deep_structify(hash)
       hash ||= {}
-      result = Hash[hash.map { |k, v| [k, v.is_a?(Hash) ? deep_structify(v) : v] }]
+      result = hash.transform_values { |v| v.is_a?(Hash) ? deep_structify(v) : v }
       OpenStruct.new(result)
     end
 
