@@ -59,15 +59,18 @@ module HasConfiguration #:nodoc:
     end
 
     def filename
-      if @options[:file]
-        @options[:file]
-      elsif @class_name
-        filename = "#{@class_name.downcase}.yml"
-        defined?(Rails) ? Rails.root.join('config', filename).to_s : filename
-      else
-        raise ArgumentError,
-              'Unable to resolve filename, please add :file parameter to has_configuration'
-      end
+      @options[:file] || determine_filename_from_class ||
+        raise(
+          ArgumentError,
+          'Unable to resolve filename, please add :file parameter to has_configuration'
+        )
+    end
+
+    def determine_filename_from_class
+      return unless @class_name
+
+      filename = "#{@class_name.downcase}.yml"
+      defined?(Rails) ? Rails.root.join('config', filename).to_s : filename
     end
 
     def environment
@@ -91,13 +94,11 @@ module HasConfiguration #:nodoc:
       @deep_stringified_hash ||= deep_transform_keys(@hash, &:to_s)
     end
 
-    # from Rails 4.0 (/active_support/core_ext/hash/keys.rb)
+    # from Rails (/active_support/core_ext/hash/keys.rb)
     def deep_transform_keys(hash, &block)
-      result = {}
-      hash&.each do |key, value|
+      hash&.each_with_object({}) do |(key, value), result|
         result[yield(key)] = value.is_a?(Hash) ? deep_transform_keys(value, &block) : value
       end
-      result
     end
   end
 end

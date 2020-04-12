@@ -1,5 +1,7 @@
 *current master*
 
+* Minor refactorings for readability and efficiency
+
 *5.0.0 (April 12, 2020)*
 
 * Ensure Rails 6.0 compability
