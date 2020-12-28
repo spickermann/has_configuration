@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
+class Dummy
+  require 'has_configuration'
+  has_configuration file: 'spec/fixtures/class.yml'
+end
+
 RSpec.describe HasConfiguration do
   context 'when declared' do
-    Dummy = Class.new do
-      require 'has_configuration'
-      has_configuration file: 'spec/fixtures/class.yml'
-    end
-
     context 'with a class' do
       subject(:dummy) { Dummy }
 
