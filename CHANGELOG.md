@@ -1,3 +1,8 @@
+*Unreleased*
+
+* Ensure Rails 7.0 compability
+* Ensure Ruby 3.1.0 compability
+
 *5.0.1 (December 28, 2020)*
 
 * Ensure Rails 6.1 compability
