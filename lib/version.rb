@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module HasConfiguration #:nodoc:
-  module VERSION #:nodoc:
+module HasConfiguration # :nodoc:
+  module VERSION # :nodoc:
     MAJOR = 5
     MINOR = 0
     BUILD = 1

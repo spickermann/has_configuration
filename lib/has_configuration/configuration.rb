@@ -4,8 +4,8 @@ require 'active_support/core_ext/hash/indifferent_access'
 require 'ostruct'
 require 'yaml'
 
-module HasConfiguration #:nodoc:
-  class Configuration #:nodoc:
+module HasConfiguration # :nodoc:
+  class Configuration # :nodoc:
     def initialize(klass, options = {})
       @class_name = klass.name
       @options    = options
@@ -81,7 +81,7 @@ module HasConfiguration #:nodoc:
     def deep_structify(hash)
       hash ||= {}
       result = hash.transform_values { |v| v.is_a?(Hash) ? deep_structify(v) : v }
-      OpenStruct.new(result)
+      OpenStruct.new(result) # rubocop:disable Style/OpenStructUse
     end
 
     def deep_symbolized_hash
