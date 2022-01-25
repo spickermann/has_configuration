@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ruby: [3.1.0, 3.0.3, 2.7.5, 2.6.9, 2.5.9]
+
+    name: CI Ruby ${{ matrix.ruby }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+      - name: Install Gems
+        run: bundle install
+      - name: RSpec
+        run: bundle exec rspec
+      - name: Rubocop
+        run: bundle exec rubocop
+      - name: Coveralls
+        if: ${{ matrix.ruby == '3.1.0' }}
+        continue-on-error: true
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Code Climate
+        if: ${{ matrix.ruby == '3.1.0' }}
+        continue-on-error: true
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_TOKEN }}

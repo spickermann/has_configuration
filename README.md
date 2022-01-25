@@ -5,7 +5,7 @@ Load configuration settings from a yaml file and adds a class and an instance me
 
 [![License MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/spickermann/has_configuration/blob/master/MIT-LICENSE)
 [![Gem Version](https://badge.fury.io/rb/has_configuration.svg)](http://badge.fury.io/rb/has_configuration)
-[![Build Status](https://travis-ci.org/spickermann/has_configuration.svg?branch=master)](https://travis-ci.org/spickermann/has_configuration)
+![Build Status](https://github.com/spickermann/has_configuration/actions/workflows/CI.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/spickermann/has_configuration/badge.svg?branch=master)](https://coveralls.io/r/spickermann/has_configuration?branch=master)
 [![Code Climate](https://codeclimate.com/github/spickermann/has_configuration/badges/gpa.svg)](https://codeclimate.com/github/spickermann/has_configuration)
 

@@ -2,6 +2,7 @@
 
 * Ensure Rails 7.0 compability
 * Ensure Ruby 3.1.0 compability
+* Switch from Travis CI to GitHub Actions
 
 *5.0.1 (December 28, 2020)*
 
