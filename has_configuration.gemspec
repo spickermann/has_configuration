@@ -27,13 +27,6 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.5.0'
 
   spec.add_dependency('activesupport', '>= 4.2.2')
-  spec.add_development_dependency('rake')
-  spec.add_development_dependency('rspec')
-  spec.add_development_dependency('rubocop')
-  spec.add_development_dependency('rubocop-performance')
-  spec.add_development_dependency('rubocop-rspec')
-  spec.add_development_dependency('simplecov')
-  spec.add_development_dependency('simplecov-lcov')
 
   spec.metadata['rubygems_mfa_required'] = 'true'
 end
