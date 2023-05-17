@@ -4,6 +4,7 @@ require 'simplecov'
 
 SimpleCov.start do
   if ENV['CI']
+    require 'simplecov_json_formatter'
     require 'simplecov-lcov'
 
     SimpleCov::Formatter::LcovFormatter.config do |c|
@@ -11,7 +12,9 @@ SimpleCov.start do
       c.single_report_path = 'coverage/lcov.info'
     end
 
-    formatter SimpleCov::Formatter::LcovFormatter
+    formatter SimpleCov::Formatter::MultiFormatter.new [
+      SimpleCov::Formatter::JSONFormatter, SimpleCov::Formatter::LcovFormatter
+    ]
   end
 
   add_filter %w[version.rb initializer.rb]
