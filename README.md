@@ -5,14 +5,14 @@ Load configuration settings from a yaml file and adds a class and an instance me
 
 [![License MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/spickermann/has_configuration/blob/master/MIT-LICENSE)
 [![Gem Version](https://badge.fury.io/rb/has_configuration.svg)](http://badge.fury.io/rb/has_configuration)
-![Build Status](https://github.com/spickermann/has_configuration/actions/workflows/CI.yml/badge.svg)
+[![Build Status](https://github.com/spickermann/has_configuration/actions/workflows/CI.yml/badge.svg)](https://github.com/spickermann/has_configuration/actions/workflows/CI.yml)
 [![Coverage Status](https://coveralls.io/repos/spickermann/has_configuration/badge.svg?branch=master)](https://coveralls.io/r/spickermann/has_configuration?branch=master)
 [![Code Climate](https://codeclimate.com/github/spickermann/has_configuration/badges/gpa.svg)](https://codeclimate.com/github/spickermann/has_configuration)
 
 Installation
 ------------
 
-Include the gem to your Gemfile:
+Include the gem in your Gemfile:
 
 ```ruby
 gem 'has_configuration'
@@ -40,7 +40,7 @@ has_configuration file: Rails.root.join('config', 'example.yml'), env: 'staging'
 <dl>
 <dt>file</dt>
 <dd>
-  The yml file to load: Defaults to <code>config/classname.yml</code> if Rails is
+  The YAML file to load: Defaults to <code>config/classname.yml</code> if Rails is
   defined, <code>classname.yml</code> otherwise.
 </dd>
 <dt>env</dt>
@@ -51,7 +51,7 @@ has_configuration file: Rails.root.join('config', 'example.yml'), env: 'staging'
 YAML File Example
 -----------------
 
-The yaml file may contain defaults. Nesting is not limited. ERB in the yaml file is evaluated.
+The YAML file may contain defaults. Nesting is not limited. ERB in the YAML file is evaluated.
 
 ```yaml
 defaults: &defaults
@@ -98,4 +98,4 @@ Contributing
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+5. Create new pull request
