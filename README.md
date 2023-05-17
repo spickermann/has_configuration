@@ -3,10 +3,10 @@ Has Configuration
 
 Load configuration settings from a yaml file and adds a class and an instance method `configuration` to an object.
 
-[![License MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/spickermann/has_configuration/blob/master/MIT-LICENSE)
+[![License MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/spickermann/has_configuration/blob/main/MIT-LICENSE)
 [![Gem Version](https://badge.fury.io/rb/has_configuration.svg)](http://badge.fury.io/rb/has_configuration)
 [![Build Status](https://github.com/spickermann/has_configuration/actions/workflows/CI.yml/badge.svg)](https://github.com/spickermann/has_configuration/actions/workflows/CI.yml)
-[![Coverage Status](https://coveralls.io/repos/spickermann/has_configuration/badge.svg?branch=master)](https://coveralls.io/r/spickermann/has_configuration?branch=master)
+[![Coverage Status](https://coveralls.io/repos/spickermann/has_configuration/badge.svg?branch=main)](https://coveralls.io/r/spickermann/has_configuration?branch=main)
 [![Code Climate](https://codeclimate.com/github/spickermann/has_configuration/badges/gpa.svg)](https://codeclimate.com/github/spickermann/has_configuration)
 
 Installation
