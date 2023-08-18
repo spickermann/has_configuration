@@ -8,7 +8,7 @@ RSpec.describe HasConfiguration::Configuration do
   let(:klass) { Class }
 
   before do
-    allow_any_instance_of( # rubocop:disable RSpec/AnyInstance
+    allow_any_instance_of(
       Configuration
     ).to receive(:raw_file).and_return(File.read(fixture))
   end
@@ -106,7 +106,7 @@ RSpec.describe HasConfiguration::Configuration do
     let(:configuration) { described_class.new(klass) }
     let(:fixture) { 'spec/fixtures/with_nested_attributes.yml' }
 
-    it 'supports multiple getter variants' do # rubocop:disable RSpec/MultipleExpectations
+    it 'supports multiple getter variants' do
       expect(configuration.to_h[:env]).to eql('test')
       expect(configuration.env).to eql('test')
 

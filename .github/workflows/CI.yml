@@ -26,8 +26,8 @@ jobs:
         run: bundle install
       - name: RSpec
         run: bundle exec rspec
-      - name: Rubocop
-        run: bundle exec rubocop
+      - name: Standard
+        run: bundle exec standardrb
       - name: Coveralls
         if: ${{ matrix.ruby == '3.2.2' }}
         continue-on-error: true

@@ -81,7 +81,7 @@ module HasConfiguration # :nodoc:
     def deep_structify(hash)
       hash ||= {}
       result = hash.transform_values { |v| v.is_a?(Hash) ? deep_structify(v) : v }
-      OpenStruct.new(result) # rubocop:disable Style/OpenStructUse
+      OpenStruct.new(result)
     end
 
     def deep_symbolized_hash
