@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require 'simplecov'
+require "simplecov"
 
 SimpleCov.start do
-  if ENV['CI']
-    require 'simplecov_json_formatter'
-    require 'simplecov-lcov'
+  if ENV["CI"]
+    require "simplecov_json_formatter"
+    require "simplecov-lcov"
 
     SimpleCov::Formatter::LcovFormatter.config do |c|
       c.report_with_single_file = true
-      c.single_report_path = 'coverage/lcov.info'
+      c.single_report_path = "coverage/lcov.info"
     end
 
     formatter SimpleCov::Formatter::MultiFormatter.new [
@@ -100,7 +100,7 @@ RSpec.configure do |config|
     # Use the documentation formatter for detailed output,
     # unless a formatter has already been configured
     # (e.g. via a command-line flag).
-    config.default_formatter = 'doc'
+    config.default_formatter = "doc"
   end
 
   # Print the 10 slowest examples and example groups at the

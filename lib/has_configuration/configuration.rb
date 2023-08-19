@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/hash/indifferent_access'
-require 'ostruct'
-require 'yaml'
+require "active_support/core_ext/hash/indifferent_access"
+require "ostruct"
+require "yaml"
 
 module HasConfiguration # :nodoc:
   class Configuration # :nodoc:
     def initialize(klass, options = {})
       @class_name = klass.name
-      @options    = options
+      @options = options
 
       load_file
       init_hash
@@ -16,9 +16,9 @@ module HasConfiguration # :nodoc:
 
     def to_h(type = nil)
       case type
-      when :symbolized  then  deep_symbolized_hash
-      when :stringify   then  deep_stringified_hash
-      else                    @hash
+      when :symbolized then deep_symbolized_hash
+      when :stringify then deep_stringified_hash
+      else @hash
       end
     end
 
@@ -33,16 +33,16 @@ module HasConfiguration # :nodoc:
     end
 
     def load_file
-      @raw = if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('2.6.0')
-               YAML.safe_load(ERB.new(raw_file(filename)).result, aliases: true)
-             else
-               YAML.safe_load(
-                 ERB.new(raw_file(filename)).result,
-                 [],  # whitelist_classes
-                 [],  # whitelist_symbols
-                 true # allow aliases
-               )
-             end
+      @raw = if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("2.6.0")
+        YAML.safe_load(ERB.new(raw_file(filename)).result, aliases: true)
+      else
+        YAML.safe_load(
+          ERB.new(raw_file(filename)).result,
+          [],  # whitelist_classes
+          [],  # whitelist_symbols
+          true # allow aliases
+        )
+      end
     end
 
     def init_hash
@@ -62,7 +62,7 @@ module HasConfiguration # :nodoc:
       @options[:file] || determine_filename_from_class ||
         raise(
           ArgumentError,
-          'Unable to resolve filename, please add :file parameter to has_configuration'
+          "Unable to resolve filename, please add :file parameter to has_configuration"
         )
     end
 
@@ -70,7 +70,7 @@ module HasConfiguration # :nodoc:
       return unless @class_name
 
       filename = "#{@class_name.downcase}.yml"
-      defined?(Rails) ? Rails.root.join('config', filename).to_s : filename
+      defined?(Rails) ? Rails.root.join("config", filename).to_s : filename
     end
 
     def environment
