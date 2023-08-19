@@ -6,6 +6,9 @@
 * Ensure Ruby 3.3.0-preview compability
 * Switch from Travis CI to GitHub Actions
 * Switch from Rubocop to Standard
+* Stop testing against Ruby 2.5
+* Stop testing against Ruby 2.6
+* Stop testing against Ruby 2.7
 
 *5.0.1 (December 28, 2020)*
 
