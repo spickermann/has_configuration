@@ -1,7 +1,7 @@
 Has Configuration
 =================
 
-Load configuration settings from a yaml file and adds a class and an instance method `configuration` to an object.
+Load configuration settings from a YAML file and adds a class and an instance method `configuration` to an object.
 
 [![License MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/spickermann/has_configuration/blob/main/MIT-LICENSE)
 [![Gem Version](https://badge.fury.io/rb/has_configuration.svg)](http://badge.fury.io/rb/has_configuration)
@@ -12,7 +12,7 @@ Load configuration settings from a yaml file and adds a class and an instance me
 Installation
 ------------
 
-Include the gem in your Gemfile:
+Include the gem into your Gemfile:
 
 ```ruby
 gem 'has_configuration'
@@ -22,6 +22,12 @@ When you are still on Ruby 1.8 or on Ruby on Rails 2.3:
 
 ```ruby
 gem 'has_configuration', '~> 0.2.4'
+```
+
+When you are still on Ruby 2.4 – 2.7:
+
+```ruby
+gem 'has_configuration', '~> 5.0.1'
 ```
 
 Usage
@@ -98,4 +104,4 @@ Contributing
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
-5. Create new pull request
+5. Create new pull request.
