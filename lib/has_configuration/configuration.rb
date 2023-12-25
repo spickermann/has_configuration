@@ -33,16 +33,7 @@ module HasConfiguration # :nodoc:
     end
 
     def load_file
-      @raw = if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("2.6.0")
-        YAML.safe_load(ERB.new(raw_file(filename)).result, aliases: true)
-      else
-        YAML.safe_load(
-          ERB.new(raw_file(filename)).result,
-          [],  # whitelist_classes
-          [],  # whitelist_symbols
-          true # allow aliases
-        )
-      end
+      @raw = YAML.safe_load(ERB.new(raw_file(filename)).result, aliases: true)
     end
 
     def init_hash
