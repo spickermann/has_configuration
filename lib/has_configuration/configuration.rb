@@ -24,8 +24,8 @@ module HasConfiguration # :nodoc:
 
     private
 
-    def method_missing(sym, *args, &block)
-      configuration.send(sym, *args, &block) || super
+    def method_missing(sym, ...)
+      configuration.send(sym, ...) || super
     end
 
     def respond_to_missing?(sym, include_private = false)
@@ -75,7 +75,7 @@ module HasConfiguration # :nodoc:
 
     def environment
       return @options[:env] if @options.key?(:env)
-      return Rails.env.to_s if defined?(Rails)
+      Rails.env.to_s if defined?(Rails)
     end
 
     def deep_structify(hash)
