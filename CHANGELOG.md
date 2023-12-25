@@ -1,4 +1,4 @@
-*Unreleased*
+*6.0.0 (December 25, 2023)*
 
 * Ensure Ruby 3.3 compability
 * Ensure Rails 7.1 compability
