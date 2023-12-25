@@ -6,6 +6,6 @@ module HasConfiguration # :nodoc:
     MINOR = 0
     BUILD = 1
 
-    STRING = [MAJOR, MINOR, BUILD].join('.')
+    STRING = [MAJOR, MINOR, BUILD].join(".")
   end
 end

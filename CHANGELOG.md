@@ -1,10 +1,14 @@
 *Unreleased*
 
-* Ensure Rails 7.0 compability
-* Ensure Ruby 3.1 compability
+* Ensure Ruby 3.3 compability
+* Ensure Rails 7.1 compability
 * Ensure Ruby 3.2 compability
-* Ensure Ruby 3.3.0-preview compability
+* Ensure Ruby 3.1 compability
 * Switch from Travis CI to GitHub Actions
+* Switch from Rubocop to Standard
+* Stop testing against Ruby 2.7
+* Stop testing against Ruby 2.6
+* Stop testing against Ruby 2.5
 
 *5.0.1 (December 28, 2020)*
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'has_configuration/configuration'
+require "has_configuration/configuration"
 
 module HasConfiguration # :nodoc:
   def self.included(base)

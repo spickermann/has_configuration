@@ -1,0 +1,7 @@
+ruby_version: 3.0
+
+plugins:
+  - standard-performance
+
+extend_config:
+  - .standard-rspec.yml

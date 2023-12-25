@@ -3,10 +3,10 @@
 # Mocks Rails Environment
 Rails = Class.new do
   def self.root
-    Pathname.new('/RAILS_ROOT')
+    Pathname.new("/RAILS_ROOT")
   end
 
   def self.env
-    'test'
+    "test"
   end
 end
