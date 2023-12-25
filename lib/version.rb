@@ -2,9 +2,9 @@
 
 module HasConfiguration # :nodoc:
   module VERSION # :nodoc:
-    MAJOR = 5
+    MAJOR = 6
     MINOR = 0
-    BUILD = 1
+    BUILD = 0
 
     STRING = [MAJOR, MINOR, BUILD].join(".")
   end
