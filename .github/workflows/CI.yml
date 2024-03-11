@@ -31,7 +31,7 @@ jobs:
       - name: Coveralls
         if: ${{ matrix.ruby == '3.3.0' }}
         continue-on-error: true
-        uses: coverallsapp/github-action@master
+        uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Codacy Coverage
