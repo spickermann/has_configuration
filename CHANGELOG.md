@@ -1,3 +1,9 @@
+*unreleased*
+
+* Ensure Ruby 3.4 compability
+* Ensure Rails 8.0 compability
+* Stop testing against Ruby 3.0
+
 *6.0.0 (December 25, 2023)*
 
 * Ensure Ruby 3.3 compability
