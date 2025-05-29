@@ -44,7 +44,7 @@ module HasConfiguration # :nodoc:
     #
     #   production:
     #     <<: *defaults
-    #     password: <%= ENV[:secret] &>
+    #     password: <%= ENV[:secret] %>
     #
     # ==== Configuration Retrieval
     #
