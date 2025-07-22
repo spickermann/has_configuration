@@ -6,7 +6,8 @@ Load configuration settings from a YAML file and adds a class and an instance me
 [![License MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/spickermann/has_configuration/blob/main/MIT-LICENSE)
 [![Gem Version](https://badge.fury.io/rb/has_configuration.svg)](http://badge.fury.io/rb/has_configuration)
 [![Build Status](https://github.com/spickermann/has_configuration/actions/workflows/CI.yml/badge.svg)](https://github.com/spickermann/has_configuration/actions/workflows/CI.yml)
-[![Coverage Status](https://coveralls.io/repos/spickermann/has_configuration/badge.svg?branch=main)](https://coveralls.io/r/spickermann/has_configuration?branch=main)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/a740e5e773aa40e48363117832b8b9ff)](https://app.codacy.com/gh/spickermann/has_configuration/dashboard)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/a740e5e773aa40e48363117832b8b9ff)](https://app.codacy.com/gh/spickermann/has_configuration/dashboard)
 
 Installation
 ------------
