@@ -3,6 +3,7 @@ Has Configuration
 
 Load configuration settings from a YAML file and adds a class and an instance method `configuration` to an object.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dbde233eb2f5469b80c4835298c43349)](https://app.codacy.com/gh/spickermann/has_configuration?utm_source=github.com&utm_medium=referral&utm_content=spickermann/has_configuration&utm_campaign=Badge_Grade)
 [![License MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/spickermann/has_configuration/blob/main/MIT-LICENSE)
 [![Gem Version](https://badge.fury.io/rb/has_configuration.svg)](http://badge.fury.io/rb/has_configuration)
 [![Build Status](https://github.com/spickermann/has_configuration/actions/workflows/CI.yml/badge.svg)](https://github.com/spickermann/has_configuration/actions/workflows/CI.yml)
