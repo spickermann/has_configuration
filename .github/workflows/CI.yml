@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        ruby: [4.0.0-preview3, 3.4.8, 3.3.9, 3.2.8, 3.1.7]
+        ruby: [4.0.0, 3.4.8, 3.3.9, 3.2.8, 3.1.7]
 
     name: CI Ruby ${{ matrix.ruby }}
     steps:
