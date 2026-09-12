@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Refactorings
+
+* Simplify optional dependency loading and standalone tests without changing the public API.
+* Improve CI security, dependency updates and reproducibility.
+
 ## 7.0.0 (2026-09-12)
 
 ### Breaking changes

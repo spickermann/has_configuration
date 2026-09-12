@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module HasConfiguration
+  autoload :IndifferentAccess, "has_configuration/indifferent_access"
+  private_constant :IndifferentAccess
+
   # A deeply immutable configuration value with strict, read-only dot access.
   class Node
     def initialize(values)
@@ -18,11 +21,11 @@ module HasConfiguration
       return result unless type == :indifferent
 
       begin
-        require "active_support/core_ext/hash/indifferent_access"
+        converter = IndifferentAccess
       rescue LoadError
         raise LoadError, "to_h(:indifferent) requires the optional activesupport gem; add it to your Gemfile"
       end
-      result.with_indifferent_access
+      converter.convert(result)
     end
 
     # Avoid exposing configuration secrets in missing-method error messages.

@@ -215,5 +215,16 @@ bundle exec rake
 The default task runs the tests and Standard.
 Run `bundle exec ruby script/verify_package.rb` to build and smoke-test an isolated installation,
 and `bundle exec ruby -Ilib script/benchmark.rb` for a reproducible local benchmark. Development dependencies are declared in the Gemfile;
-the local lockfile is ignored so CI also checks fresh dependency resolution.
+`Gemfile.lock` pins the development tools. The optional Rails environments have separate
+`gemfiles/rails_8.0.gemfile.lock` and `gemfiles/rails_8.1.gemfile.lock` files. CI installs
+these committed versions in frozen mode; none adds a runtime dependency to the gem.
+
+```sh
+BUNDLE_GEMFILE=gemfiles/rails_8.0.gemfile bundle install
+RAILS_VERSION=8.0 BUNDLE_GEMFILE=gemfiles/rails_8.0.gemfile bundle exec rake
+# Use 8.1 in both places to test Rails 8.1.
+```
+
+Update each environment intentionally with `bundle update --all`, review the lockfile changes,
+and commit them together. The lockfiles cover Ruby source gems, macOS arm64 and Linux platforms.
 See [RELEASING.md](RELEASING.md) for the compatibility matrix, package checks and manual release procedure.

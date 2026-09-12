@@ -5,31 +5,27 @@
 
 RSpec.describe HasConfiguration do
   it "loads plain YAML without loading Rails, ActiveSupport, OpenStruct or ERB", :aggregate_failures do
-    File.write(config_file, "enabled: false\nnested: {value: first}")
-    output, error, status = ruby_process(<<~RUBY, config_file)
+    expect_ruby_output("enabled: false\nnested: {value: first}", "ok\n", <<~RUBY)
       require 'has_configuration'
       c = HasConfiguration::Configuration.new(Class, file: ARGV.fetch(0))
       abort 'value mismatch' unless c.enabled == false && c.nested.value == 'first'
       abort 'optional libraries loaded' if defined?(Rails) || defined?(ActiveSupport) || defined?(OpenStruct) || defined?(ERB)
       puts 'ok'
     RUBY
-    expect([output, error, status.success?]).to eq(["ok\n", "", true])
   end
 
   it "loads ERB explicitly in a fresh process without Rails", :aggregate_failures do
-    File.write(config_file, "value: <%= 20 + 22 %>")
-    output, error, status = ruby_process(<<~RUBY, config_file)
+    expect_ruby_output("value: <%= 20 + 22 %>", "42\n", <<~RUBY)
       require 'has_configuration/configuration'
       abort 'ERB preloaded' if defined?(ERB)
       c = HasConfiguration::Configuration.new(Class, file: ARGV.fetch(0))
+      abort 'unrelated libraries loaded' if defined?(ActiveSupport) || defined?(OpenStruct)
       puts c.value
     RUBY
-    expect([output, error, status.success?]).to eq(["42\n", "", true])
   end
 
   it "keeps plain YAML functional when optional gems cannot be loaded", :aggregate_failures do
-    File.write(config_file, "value: first")
-    output, error, status = ruby_process(<<~RUBY, config_file)
+    expect_ruby_output("value: first", "first\n", <<~RUBY)
       module MissingOptionalLibraries
         def require(path)
           raise LoadError, path if path.match?(/\\A(?:erb|ostruct|active_support|rails)/)
@@ -40,7 +36,6 @@ RSpec.describe HasConfiguration do
       require 'has_configuration'
       puts HasConfiguration::Configuration.new(Class, file: ARGV.fetch(0)).value
     RUBY
-    expect([output, error, status.success?]).to eq(["first\n", "", true])
   end
 
   it "explains the missing optional ERB gem instead of returning raw template text", :aggregate_failures do

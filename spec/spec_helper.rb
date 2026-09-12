@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "simplecov"
+require "simplecov-lcov"
 
 SimpleCov.start do
   enable_coverage :branch
@@ -12,7 +13,6 @@ SimpleCov.start do
   end
 
   if ENV["CI"]
-    require "simplecov-lcov"
     SimpleCov::Formatter::LcovFormatter.config do |config|
       config.report_with_single_file = true
       config.single_report_path = "coverage/lcov.info"
@@ -36,8 +36,14 @@ module ConfigurationHelpers
   end
 
   def ruby_process(source, *arguments)
-    Open3.capture3({"RUBYOPT" => nil, "BUNDLE_GEMFILE" => nil},
+    Open3.capture3({"RUBYOPT" => nil, "BUNDLE_GEMFILE" => nil, "BUNDLE_LOCKFILE" => nil, "BUNDLER_SETUP" => nil},
       RbConfig.ruby, "-I", File.expand_path("../lib", __dir__), "-e", source, *arguments)
+  end
+
+  def expect_ruby_output(yaml, expected, source)
+    File.write(config_file, yaml)
+    output, error, status = ruby_process(source, config_file)
+    expect([output, error, status.success?]).to eq([expected, "", true])
   end
 end
 

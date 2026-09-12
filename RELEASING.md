@@ -8,12 +8,15 @@ https://github.com/spickermann/has_configuration.
 
 1. Review the changes and choose a Semantic Versioning version in `lib/version.rb`.
    Breaking API or minimum-Ruby changes require a major version.
-2. Run `bundle update` to test fresh development dependencies; the application-style local
-   lockfile is intentionally not committed. Keep declared development version ranges current.
+2. Install the committed development lockfile with `BUNDLE_FROZEN=true bundle install`.
+   When updating dependencies, run `bundle update --all` for the root Gemfile and each of
+   `gemfiles/rails_8.0.gemfile` and `gemfiles/rails_8.1.gemfile` using `BUNDLE_GEMFILE`.
+   Review and commit all changed lockfiles; keep their Ruby, macOS and Linux platforms.
 3. Run `bundle exec rake` on supported Ruby series (currently 3.3, 3.4 and 4.0).
-   CI repeats this with `RAILS_VERSION=8.0` and `RAILS_VERSION=8.1` for optional Rails integration.
-   Set the same environment variable for both `bundle install` and `bundle exec rake`.
-   These jobs install railties (the Rails application core), not the full Rails meta-gem.
+   For Rails 8.0, install with `BUNDLE_GEMFILE=gemfiles/rails_8.0.gemfile` and run tests with
+   both that variable and `RAILS_VERSION=8.0`; use 8.1 for the second integration.
+   CI uses frozen installs of each environment's lockfile. These jobs install railties
+   (the Rails application core), not the full Rails meta-gem.
 4. Verify the release against current upstream Ruby and Rails support policies. A declared
    minimum is not evidence that every future version works. Record exact tested versions.
 5. Date the changelog, review the README migration notes, then build the package:

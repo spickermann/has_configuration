@@ -15,16 +15,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # Resolve the latest available patch of every supported Ruby series.
         ruby: ['3.3', '3.4', '4.0']
         rails: ['', '8.0', '8.1']
     name: Ruby ${{ matrix.ruby }} / Rails ${{ matrix.rails || 'none' }}
     env:
       RAILS_VERSION: ${{ matrix.rails }}
+      BUNDLE_GEMFILE: ${{ matrix.rails && format('gemfiles/rails_{0}.gemfile', matrix.rails) || 'Gemfile' }}
+      BUNDLE_FROZEN: 'true'
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Setup Ruby and Install Gems
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
@@ -35,6 +38,6 @@ jobs:
         run: bundle exec ruby script/verify_package.rb
       - name: Codacy Coverage
         if: matrix.ruby == '4.0' && matrix.rails == ''
-        uses: codacy/codacy-coverage-reporter-action@v1
+        uses: codacy/codacy-coverage-reporter-action@89d6c85cfafaec52c72b6c5e8b2878d33104c699 # v1.3.0
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}

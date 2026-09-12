@@ -4,6 +4,9 @@ require "yaml"
 require "has_configuration/node"
 
 module HasConfiguration
+  autoload :ERBRenderer, "has_configuration/erb_renderer"
+  private_constant :ERBRenderer
+
   class Configuration < Node
     def initialize(klass, options = {})
       file = options[:file] || default_filename(klass)
@@ -61,13 +64,11 @@ module HasConfiguration
 
     def render_erb(source, file)
       begin
-        require "erb"
+        renderer = ERBRenderer
       rescue LoadError
         raise LoadError, "ERB configuration in #{file} requires the optional erb gem; add it to your Gemfile"
       end
-      template = ERB.new(source)
-      template.filename = file.to_s
-      template.result
+      renderer.render(source, file)
     end
 
     # Inspect the YAML tree before safe_load can silently overwrite duplicates.

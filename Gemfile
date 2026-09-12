@@ -12,8 +12,3 @@ gem "simplecov", "~> 1.2"
 gem "simplecov-lcov", "~> 0.9"
 gem "standard", "~> 1.56"
 gem "standard-performance", "~> 1.9"
-
-# Test Rails conveniences without introducing a runtime dependency.
-if ENV["RAILS_VERSION"] && !ENV["RAILS_VERSION"].empty?
-  gem "railties", "~> #{ENV.fetch("RAILS_VERSION")}.0"
-end

@@ -32,6 +32,8 @@ Dir.mktmpdir("has-configuration-package") do |directory|
     "RUBYOPT" => nil,
     "RUBYLIB" => nil,
     "BUNDLE_GEMFILE" => nil,
+    "BUNDLE_LOCKFILE" => nil,
+    "BUNDLER_SETUP" => nil,
     "BUNDLE_BIN_PATH" => nil
   }
   output, error, status = Open3.capture3(environment, RbConfig.ruby, "-rrubygems/gem_runner",
