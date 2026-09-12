@@ -7,16 +7,23 @@ require "rbconfig"
 require "digest"
 
 project = File.expand_path("..", __dir__)
+existing_artifact = File.expand_path(ARGV.first) if ARGV.first
 
 Dir.mktmpdir("has-configuration-package") do |directory|
-  artifact = File.join(directory, "has_configuration.gem")
+  artifact = existing_artifact || File.join(directory, "has_configuration.gem")
   Dir.chdir(project) do
     specification = Gem::Specification.load("has_configuration.gemspec")
     abort "Runtime dependencies must be empty" unless specification.runtime_dependencies.empty?
     abort "Unexpected minimum Ruby" unless specification.required_ruby_version.to_s == ">= 3.3.0"
     required = %w[README.md CHANGELOG.md RELEASING.md MIT-LICENSE lib/has_configuration.rb lib/has_configuration/node.rb]
     abort "Missing package files" unless (required - specification.files).empty?
-    Gem::Package.build(specification, false, false, artifact)
+    Gem::Package.build(specification, false, false, artifact) unless existing_artifact
+    packaged = Gem::Package.new(artifact).spec
+    unless packaged.name == specification.name && packaged.version == specification.version &&
+        packaged.files == specification.files && packaged.runtime_dependencies.empty? &&
+        packaged.required_ruby_version == specification.required_ruby_version
+      abort "Package metadata does not match the release source"
+    end
   end
 
   environment = {

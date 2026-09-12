@@ -31,6 +31,8 @@ https://github.com/spickermann/has_configuration.
    same RubyGems version and SOURCE_DATE_EPOCH if checking byte-for-byte reproducibility;
    metadata written by different RubyGems versions can differ.
 6. Install the exact built artifact into a temporary `GEM_HOME` with an isolated `GEM_PATH`.
+   Run `bundle exec ruby script/verify_package.rb ./has_configuration-VERSION.gem` to check
+   that exact artifact without rebuilding it (omit the argument to build a temporary package).
    From outside the source checkout, require `has_configuration`, load plain YAML and verify
    strict getters, freezing, independent exports and inheritance. Nothing may preload Rails,
    ActiveSupport, OpenStruct or ERB for this smoke test. Test a template separately, including
