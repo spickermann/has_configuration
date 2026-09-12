@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-lib = File.expand_path("lib", __dir__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-
-require "version"
+require_relative "lib/version"
 
 Gem::Specification.new do |spec|
   spec.authors = ["Martin Spickermann"]
@@ -16,18 +13,19 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Simple configuration handling"
   spec.description = <<-DESCRIPTION
-    Loads configuration setting from a yml file and adds a configuation method
-    to class and instances
+    Loads trusted YAML settings into deeply immutable configuration objects
+    with class and instance getters and optional Rails, ERB and ActiveSupport integration.
   DESCRIPTION
 
-  spec.files = Dir["CHANGELOG", "MIT-LICENSE", "README", "lib/**/*", "spec/**/*"]
+  spec.files = Dir["CHANGELOG.md", "MIT-LICENSE", "README.md", "RELEASING.md", "lib/**/*.rb", "spec/**/*"].select { |file| File.file?(file) }.sort
 
   spec.require_path = ["lib"]
 
-  spec.required_ruby_version = ">= 3.1.0"
-
-  spec.add_dependency("activesupport", ">= 6.1.0")
-  spec.add_dependency("ostruct") if Gem::Version.new(RUBY_VERSION) > Gem::Version.new("3.4")
+  spec.required_ruby_version = ">= 3.3.0"
 
   spec.metadata["rubygems_mfa_required"] = "true"
+  spec.metadata["source_code_uri"] = spec.homepage
+  spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/main/CHANGELOG.md"
+  spec.metadata["bug_tracker_uri"] = "#{spec.homepage}/issues"
+  spec.metadata["allowed_push_host"] = "https://rubygems.org"
 end

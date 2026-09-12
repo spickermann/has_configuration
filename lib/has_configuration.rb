@@ -2,88 +2,33 @@
 
 require "has_configuration/configuration"
 
-module HasConfiguration # :nodoc:
+module HasConfiguration
   def self.included(base)
     base.extend(ClassMethods)
   end
 
-  module ClassMethods # :nodoc:
-    # Load configuration settings from a yaml file and adds a class and an instance
-    # method +configuration+ to the object.
-    #
-    # ==== options
-    #
-    # [+file+]  The yml file to load:
-    #           Defaults to <tt>config/classname.yml</tt> if Rails is defined,
-    #           <tt>classname.yml</tt> otherwise.
-    # [+env+]   The environment to load from the file.
-    #           Defaults to +Rails.env+ if Rails is defined, no default if not.
-    #
-    # ==== Integration Examples
-    #
-    #   has_configuration
-    #   # => loads setting without environment processing from the
-    #   #    file #{self.class.name.downcase}.yml
-    #
-    #   has_configuration file: Rails.root.join('config', 'example.yml'), env: 'staging'
-    #   # => loads settings for staging environment from RAILS_ROOT/config/example.yml file
-    #
-    # ==== YAML File Example
-    #
-    # The yaml file may contain defaults. Nesting is not limited. ERB in the yaml
-    # file is evaluated.
-    #
-    #   defaults: &defaults
-    #     user: root
-    #     some:
-    #       nested: value
-    #
-    #   development:
-    #     <<: *defaults
-    #     password: secret
-    #
-    #   production:
-    #     <<: *defaults
-    #     password: <%= ENV[:secret] %>
-    #
-    # ==== Configuration Retrieval
-    #
-    # If the example above was loaded into a class +Foo+ in +production+ environment:
-    #
-    #   Foo.configuration       # => <HasConfiguration::Configuration:0x00...>
-    #   Foo.new.configuration   # => <HasConfiguration::Configuration:0x00...>
-    #
-    #   # convenient getter methods
-    #   Foo.configuration.some.nested             # => "value"
-    #
-    #   # to_h returns a HashWithIndifferentAccess
-    #   Foo.configuration.to_h                    # => { :user => "root",
-    #                                             #      :password => "prod-secret",
-    #                                             #      :some => { :nested => "value" } }
-    #   Foo.configuration.to_h[:some][:nested]    # => "value"
-    #   Foo.configuration.to_h[:some]['nested']   # => "value"
-    #
-    #   # force a special key type (when merging with other hashes)
-    #   Foo.configuration.to_h(:symbolized)       # => { :user => "root",
-    #                                             #      :password => "prod-secret",
-    #                                             #      :some => { :nested => "value" } }
-    #   Foo.configuration.to_h(:stringify)        # => { 'user' => "root",
-    #                                             #      'password' => "prod-secret",
-    #                                             #      'some' => { 'nested' => "value" } }
-    #
+  module ClassMethods
+    # Loads a trusted YAML file once and installs class and instance getters.
+    # Defaults to <class name downcased>.yml, or config/<name>.yml under Rails.root.
+    # A loaded Rails supplies Rails.env; pass env: nil to read the complete file.
+    # ERB is loaded only when the file contains ERB markup.
+    # A subclass inherits its parent's immutable configuration unless it declares
+    # its own, which replaces the inherited settings without merging.
     def has_configuration(options = {})
-      @configuration = Configuration.new(self, options)
+      @configuration = HasConfiguration::Configuration.new(self, options)
       include Getter
     end
 
-    # Adds getters for the configuration
     module Getter
       def self.included(base)
         base.extend(ClassMethods)
       end
 
-      module ClassMethods # :nodoc:
-        attr_reader :configuration
+      module ClassMethods
+        def configuration
+          return @configuration if instance_variable_defined?(:@configuration)
+          superclass.configuration if respond_to?(:superclass) && superclass.respond_to?(:configuration)
+        end
       end
 
       def configuration
@@ -93,6 +38,6 @@ module HasConfiguration # :nodoc:
   end
 end
 
-class Object # :nodoc:
+class Object
   include HasConfiguration
 end

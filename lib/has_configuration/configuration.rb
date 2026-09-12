@@ -1,95 +1,110 @@
 # frozen_string_literal: true
 
-require "active_support/core_ext/hash/indifferent_access"
-require "ostruct"
 require "yaml"
+require "has_configuration/node"
 
-module HasConfiguration # :nodoc:
-  class Configuration # :nodoc:
+module HasConfiguration
+  class Configuration < Node
     def initialize(klass, options = {})
-      @class_name = klass.name
-      @options = options
-
-      load_file
-      init_hash
-    end
-
-    def to_h(type = nil)
-      case type
-      when :symbolized then deep_symbolized_hash
-      when :stringify then deep_stringified_hash
-      else @hash
+      file = options[:file] || default_filename(klass)
+      environment = if options.key?(:env)
+        options[:env]
+      elsif defined?(Rails) && Rails.respond_to?(:env)
+        Rails.env.to_s
       end
+
+      values = load_values(file)
+      if environment
+        unless values.key?(environment.to_s)
+          raise ArgumentError, "Missing configuration environment #{environment.inspect} in #{file}"
+        end
+        values = values.fetch(environment.to_s)
+        unless values.is_a?(Hash)
+          raise ArgumentError, "Configuration environment #{environment.inspect} must be a mapping in #{file}"
+        end
+      end
+
+      super(values)
     end
 
     private
 
-    def method_missing(sym, ...)
-      configuration.send(sym, ...) || super
-    end
+    def default_filename(klass)
+      unless klass.name
+        raise ArgumentError, "Unable to resolve filename, please add :file parameter to has_configuration"
+      end
 
-    def respond_to_missing?(sym, include_private = false)
-      configuration.respond_to?(sym, include_private)
-    end
-
-    def load_file
-      @raw = YAML.safe_load(ERB.new(raw_file(filename)).result, aliases: true)
-    end
-
-    def init_hash
-      @hash = (@raw || {}).with_indifferent_access
-      @hash = @hash[environment] if environment
-    end
-
-    def raw_file(filename)
-      File.read(filename)
-    end
-
-    def configuration
-      @configuration ||= deep_structify(@hash)
-    end
-
-    def filename
-      @options[:file] || determine_filename_from_class ||
-        raise(
-          ArgumentError,
-          "Unable to resolve filename, please add :file parameter to has_configuration"
-        )
-    end
-
-    def determine_filename_from_class
-      return unless @class_name
-
-      filename = "#{@class_name.downcase}.yml"
-      defined?(Rails) ? Rails.root.join("config", filename).to_s : filename
-    end
-
-    def environment
-      return @options[:env] if @options.key?(:env)
-      Rails.env.to_s if defined?(Rails)
-    end
-
-    def deep_structify(hash)
-      hash ||= {}
-      result = hash.transform_values { |v| v.is_a?(Hash) ? deep_structify(v) : v }
-      OpenStruct.new(result)
-    end
-
-    def deep_symbolized_hash
-      @deep_symbolized_hash ||= deep_transform_keys(@hash) do |key|
-        key.respond_to?(:to_sym) ? key.to_sym : key
+      name = "#{klass.name.downcase}.yml"
+      if defined?(Rails) && Rails.respond_to?(:root) && Rails.root
+        File.join(Rails.root.to_s, "config", name)
+      else
+        name
       end
     end
 
-    def deep_stringified_hash
-      @deep_stringified_hash ||= deep_transform_keys(@hash, &:to_s)
+    def load_values(file)
+      source = File.read(file)
+      source = render_erb(source, file) if source.include?("<%")
+      tree = YAML.parse_stream(source, filename: file.to_s)
+      if tree.children.length > 1
+        raise ArgumentError, "Configuration must contain a single YAML document in #{file}"
+      end
+      validate_yaml_keys(tree, file)
+      values = YAML.safe_load(source, aliases: true, filename: file.to_s)
+      values = {} if values.nil?
+      unless values.is_a?(Hash)
+        raise ArgumentError, "Configuration must be a mapping in #{file}"
+      end
+      validate_values(values, file, {})
+      values
     end
 
-    # from Rails (/active_support/core_ext/hash/keys.rb)
-    def deep_transform_keys(hash, &block)
-      hash&.each_with_object({}) do |(key, value), result|
-        result[yield(key)] = value.is_a?(Hash) ? deep_transform_keys(value, &block) : value
+    def render_erb(source, file)
+      begin
+        require "erb"
+      rescue LoadError
+        raise LoadError, "ERB configuration in #{file} requires the optional erb gem; add it to your Gemfile"
       end
+      template = ERB.new(source)
+      template.filename = file.to_s
+      template.result
+    end
+
+    # Inspect the YAML tree before safe_load can silently overwrite duplicates.
+    # Merge defaults are not explicit duplicate keys and remain supported.
+    def validate_yaml_keys(node, file)
+      if node.is_a?(Psych::Nodes::Mapping)
+        seen = {}
+        node.children.each_slice(2) do |key, _value|
+          unless key.is_a?(Psych::Nodes::Scalar)
+            raise ArgumentError, "Configuration keys must be strings in #{file}"
+          end
+          if seen.key?(key.value)
+            raise ArgumentError, "Duplicate configuration key at line #{key.start_line + 1} in #{file}"
+          end
+          seen[key.value] = true
+        end
+      end
+      node.children&.each { |child| validate_yaml_keys(child, file) }
+    end
+
+    def validate_values(value, file, ancestors)
+      return unless value.is_a?(Hash) || value.is_a?(Array)
+      if ancestors.key?(value.object_id)
+        raise ArgumentError, "Cyclic configuration alias in #{file}"
+      end
+      ancestors[value.object_id] = true
+      if value.is_a?(Hash)
+        value.each do |key, child|
+          unless key.is_a?(String)
+            raise ArgumentError, "Configuration keys must be strings in #{file}; quote numeric and boolean keys"
+          end
+          validate_values(child, file, ancestors)
+        end
+      else
+        value.each { |child| validate_values(child, file, ancestors) }
+      end
+      ancestors.delete(value.object_id)
     end
   end
 end

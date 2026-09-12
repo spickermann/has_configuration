@@ -1,9 +1,27 @@
-*unreleased*
+# Changelog
 
-* Ensure Ruby 4.0 compability
-* Ensure Ruby 3.4 compability
-* Ensure Rails 8.0 compability
-* Stop testing against Ruby 3.0
+## 7.0.0 (unreleased)
+
+### Breaking changes
+
+* Require Ruby >= 3.3; optional Rails/ActiveSupport integration targets 8.0 and newer.
+* Replace mutable OpenStruct views with deeply frozen read-only configuration nodes.
+* Return independent, mutable, string-keyed Hash snapshots from `to_h`; retain recursive
+  `:symbolized` and `:stringify` exports, and offer explicit optional `:indifferent` exports.
+* Remove mandatory ActiveSupport and OpenStruct dependencies; load ERB only for templates.
+* Raise on missing dot keys at every depth and on missing or invalid environments at load time.
+* Require unique string YAML keys and mapping roots; reject cyclic aliases.
+* Inherit the nearest ancestor's configuration unless a subclass declares a complete replacement.
+* Reserve existing Ruby/API methods on all nodes; use hash exports for colliding keys.
+
+### Fixes
+
+* Preserve existing `false` and `nil` values and accurate `respond_to?` results.
+* Prevent setters from mutating one view before raising, and eliminate inconsistent cached views.
+* Traverse hashes and arrays recursively for dot access and key conversion.
+* Support standalone loading without preloaded Rails or ERB and explain missing optional gems.
+* Preserve YAML defaults and report syntax errors with their filename.
+* Correct ENV examples and document trust assumptions, immutable settings and migration from 6.x.
 
 *6.0.0 (December 25, 2023)*
 
