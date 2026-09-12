@@ -4,10 +4,16 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "rake"
-gem "rspec"
-gem "rubocop-rspec"
-gem "simplecov"
-gem "simplecov-lcov"
-gem "standard"
-gem "standard-performance"
+gem "erb", "~> 6.0"
+gem "rake", "~> 13.4"
+gem "rspec", "~> 3.13"
+gem "rubocop-rspec", "~> 3.10"
+gem "simplecov", "~> 1.2"
+gem "simplecov-lcov", "~> 0.9"
+gem "standard", "~> 1.56"
+gem "standard-performance", "~> 1.9"
+
+# Test Rails conveniences without introducing a runtime dependency.
+if ENV["RAILS_VERSION"] && !ENV["RAILS_VERSION"].empty?
+  gem "railties", "~> #{ENV.fetch("RAILS_VERSION")}.0"
+end

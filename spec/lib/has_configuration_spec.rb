@@ -83,4 +83,14 @@ RSpec.describe HasConfiguration do
     File.write(config_file, "value: standalone")
     expect(HasConfiguration::Configuration.new(Class, file: config_file).value).to eq("standalone")
   end
+
+  it "updates inheriting descendants when their parent is explicitly reconfigured", :aggregate_failures do # standard:disable RSpec/ExampleLength
+    parent = configured_class("value: original")
+    child = Class.new(parent)
+    previous = child.configuration
+    File.write(config_file, "value: replacement")
+    parent.has_configuration file: config_file
+    expect(child.configuration.value).to eq("replacement")
+    expect(previous.value).to eq("original")
+  end
 end

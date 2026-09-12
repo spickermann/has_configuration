@@ -4,10 +4,10 @@ require "simplecov"
 
 SimpleCov.start do
   enable_coverage :branch
-  track_files "lib/**/*.rb"
-  if respond_to?(:skip)
-    skip "/spec/", "/bundle/", "/vendor/"
+  if respond_to?(:cover)
+    cover "lib/**/*.rb"
   else
+    track_files "lib/**/*.rb"
     add_filter ["/spec/", "/bundle/", "/vendor/"]
   end
 
@@ -43,6 +43,7 @@ end
 
 RSpec.configure do |config|
   config.include ConfigurationHelpers
+  config.filter_run_excluding rails: true if ENV.fetch("RAILS_VERSION", "").empty?
   config.around do |example|
     Dir.mktmpdir("has-configuration-spec") do |directory|
       @config_file = File.join(directory, "settings.yml")

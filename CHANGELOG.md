@@ -10,7 +10,7 @@
   `:symbolized` and `:stringify` exports, and offer explicit optional `:indifferent` exports.
 * Remove mandatory ActiveSupport and OpenStruct dependencies; load ERB only for templates.
 * Raise on missing dot keys at every depth and on missing or invalid environments at load time.
-* Require unique string YAML keys and mapping roots; reject cyclic aliases.
+* Require unique string YAML keys and mapping roots; reject cyclic aliases and multiple YAML documents.
 * Inherit the nearest ancestor's configuration unless a subclass declares a complete replacement.
 * Reserve existing Ruby/API methods on all nodes; use hash exports for colliding keys.
 
@@ -21,6 +21,9 @@
 * Traverse hashes and arrays recursively for dot access and key conversion.
 * Support standalone loading without preloaded Rails or ERB and explain missing optional gems.
 * Preserve YAML defaults and report syntax errors with their filename.
+* Include README.md and CHANGELOG.md in the gem, and make package metadata independent of build Ruby.
+* Update development dependencies and CI to Ruby 3.3/3.4/4.0 with optional Rails 8.0/8.1.
+* Replace broad Rails/file mocks with regression, subprocess and real Rails application tests.
 * Correct ENV examples and document trust assumptions, immutable settings and migration from 6.x.
 
 *6.0.0 (December 25, 2023)*

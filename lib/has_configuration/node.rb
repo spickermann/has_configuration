@@ -32,17 +32,18 @@ module HasConfiguration
 
     private
 
-    def method_missing(name, *args, **kwargs, &block)
-      return super unless @values.key?(name.to_s)
-      unless args.empty? && kwargs.empty? && block.nil?
-        raise ArgumentError, "configuration getters do not accept arguments or blocks"
-      end
-
-      @values.fetch(name.to_s)
+    def method_missing(name, ...)
+      return super unless @values.key?(name.name)
+      read_value(@values.fetch(name.name), ...)
     end
 
     def respond_to_missing?(name, include_private = false)
-      @values.key?(name.to_s) || super
+      @values.key?(name.name) || super
+    end
+
+    def read_value(value)
+      raise ArgumentError, "configuration getters do not accept blocks" if block_given?
+      value
     end
 
     def freeze_value(value)

@@ -184,4 +184,25 @@ RSpec.describe HasConfiguration::Configuration do
     File.write(config_file, "value: changed")
     expect(config.value).to eq("original")
   end
+
+  it "rejects additional YAML documents instead of silently ignoring them" do
+    expect { configuration_from("---\nvalue: first\n---\nvalue: second\n") }.to raise_error(ArgumentError, /single YAML document/)
+  end
+
+  it "rejects duplicates even when one spelling is quoted" do
+    expect { configuration_from("value: first\n'value': second\n") }.to raise_error(ArgumentError, /Duplicate configuration key/)
+  end
+
+  it "allows merge sequences with explicit overrides" do
+    config = configuration_from("first: &first {name: first}\nsecond: &second {count: 2}\ntest: {<<: [*first, *second], name: override}\n", env: :test)
+    expect(config.to_h).to eq("name" => "override", "count" => 2)
+  end
+
+  it "preserves ERB evaluation failures" do
+    expect { configuration_from("value: <%= raise ArgumentError, 'template failure' %>") }.to raise_error(ArgumentError, "template failure")
+  end
+
+  it "handles empty and falsy array values" do
+    expect(configuration_from("items: [null, false, [], {}]").to_h).to eq("items" => [nil, false, [], {}])
+  end
 end

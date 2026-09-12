@@ -66,7 +66,7 @@ A later explicit call to `has_configuration` replaces that class's configuration
 - Missing environments and environments that are not mappings raise `ArgumentError` immediately.
   An explicitly empty environment (`production: {}`) is valid.
 - Without environment selection, an empty file, YAML `null` or `{}` is an empty configuration.
-  Other scalar roots and array roots raise `ArgumentError`.
+  Other scalar roots, array roots and multiple YAML documents raise `ArgumentError`.
 
 ```ruby
 class Service
@@ -212,6 +212,8 @@ bundle install
 bundle exec rake
 ```
 
-The default task runs the tests and Standard. Development dependencies are declared in the Gemfile;
+The default task runs the tests and Standard.
+Run `bundle exec ruby script/verify_package.rb` to build and smoke-test an isolated installation,
+and `bundle exec ruby -Ilib script/benchmark.rb` for a reproducible local benchmark. Development dependencies are declared in the Gemfile;
 the local lockfile is ignored so CI also checks fresh dependency resolution.
 See [RELEASING.md](RELEASING.md) for the compatibility matrix, package checks and manual release procedure.

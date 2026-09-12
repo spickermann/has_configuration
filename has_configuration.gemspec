@@ -17,7 +17,9 @@ Gem::Specification.new do |spec|
     with class and instance getters and optional Rails, ERB and ActiveSupport integration.
   DESCRIPTION
 
-  spec.files = Dir["CHANGELOG.md", "MIT-LICENSE", "README.md", "RELEASING.md", "lib/**/*.rb", "spec/**/*"].select { |file| File.file?(file) }.sort
+  spec.files = Dir.glob(
+    ["CHANGELOG.md", "MIT-LICENSE", "README.md", "RELEASING.md", "lib/**/*.rb", "spec/**/*"], base: __dir__
+  ).select { |file| File.file?(File.join(__dir__, file)) }.sort
 
   spec.require_path = ["lib"]
 
